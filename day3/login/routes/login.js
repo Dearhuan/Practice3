@@ -92,7 +92,7 @@ router.post('/regist',(req,res)=>{
           data.result = {
             status:-1,
             msg:'regist failed'
-          }
+          }      
         }
       })
     };
