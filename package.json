@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Dearhuan/Practice3/issues"
   },
-  "homepage": "https://github.com/Dearhuan/Practice3#readme"
+  "homepage": "https://github.com/Dearhuan/Practice3#readme",
+  "dependencies": {}
 }
