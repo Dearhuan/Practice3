@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./stylesheets/weui.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <title>今日头条</title>
+</head>
+
+<body>
+  <!-- 头部 -->
+  <header>今日头条</header>
+  <!-- 搜索框 -->
+  <div class="weui-search-bar" id="searchBar">
+    <form class="weui-search-bar__form">
+      <div class="weui-search-bar__box">
+        <i class="weui-icon-search"></i>
+        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+      </div>
+      <label class="weui-search-bar__label" id="searchText"
+        style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">
+        <i class="weui-icon-search"></i>
+        <span>搜索</span>
+      </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+  </div>
+  <!-- 列表页 -->
+  <div class="weui-panel weui-panel_access">
+    <div id="news" class="weui-panel__bd"></div>
+    <div class="weui-panel__ft">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <span class="weui-cell__ft"></span>
+      </a>
+    </div>
+  </div>
+  <!-- 底部 -->
+  <div class="weui-tabbar">
+    <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+      <span style="display: inline-block;position: relative;">
+        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+        <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+      </span>
+      <p class="weui-tabbar__label">微信</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item">
+      <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+      <p class="weui-tabbar__label">通讯录</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item">
+      <span style="display: inline-block;position: relative;">
+        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+      </span>
+      <p class="weui-tabbar__label">发现</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item">
+      <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+      <p class="weui-tabbar__label">我</p>
+    </a>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    (async () => {
+      let {
+        news
+      } = (await axios.get('http://localhost:3000/news')).data;
+      console.log(news);
+      let html = news.map((item) => {
+        return ` 
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+          <div style="display:${item.imgs.length>0?'block':'none'}" class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" src=${item.imgs.length>0?item.imgs[0].url:''} alt="">
+          </div>
+          <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__title">${item.title}</h4>
+              <p class="weui-media-box__desc">${item.info}</p>
+          </div>
+        </a>`
+      }).join('');
+      document.querySelector('#news').innerHTML = html;
+    })();
+  </script>
+</body>
+
+</html>

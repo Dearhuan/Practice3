@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 100%;
+  background-color: red;
+  color: white;
+}
+
+.weui-tabbar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
