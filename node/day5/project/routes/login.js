@@ -56,7 +56,7 @@ router.post('/regist',async(req,res,next)=>{
   } = req.body;
   let result = await find('users',{username:username});
   console.log(result[0].username)
-  let isTrue = false;
+  let isTrue = false; 
   if(result.length>0){
     console.log('user is exist',result);
   }else{
