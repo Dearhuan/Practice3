@@ -16,5 +16,8 @@
     "url": "https://github.com/Dearhuan/Practice3/issues"
   },
   "homepage": "https://github.com/Dearhuan/Practice3#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.1"
+  }
 }
