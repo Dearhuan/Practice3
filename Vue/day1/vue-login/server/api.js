@@ -12,36 +12,15 @@ router.post('/api/user/register', (req, res) => {
   models.Login.find({
     account: req.body.account
   }, (err, data) => {
-    if (err) {
-      console.log(err)
-      // res.send(err);
-      let newAccount = new models.Login({
-        account: req.body.account,
-        password: req.body.password
-      });
-      // 保存数据newAccount数据进mongoDB
-      newAccount.save((err, data) => {
-        if (err) {
-          res.send({
-            'status': 1001,
-            'message': '注册失败!',
-            'data': err
-          });
-        } else {
-          res.send({
-            'status': 1000,
-            'message': '注册成功!'
-          })
-        }
-      });
+    if (req.body.account.length == 0) {
+      res.send({
+        'status': 1001,
+        'message': '用户名不能为空'
+      })
     } else {
-      console.log(data)
-      if (data.length > 0) {
-        res.send({
-          'status': 1001,
-          'message': '用户已存在!'
-        });
-      } else {
+      if (err) {
+        console.log(err)
+        // res.send(err);
         let newAccount = new models.Login({
           account: req.body.account,
           password: req.body.password
@@ -58,25 +37,40 @@ router.post('/api/user/register', (req, res) => {
             res.send({
               'status': 1000,
               'message': '注册成功!'
-            });
+            })
           }
         });
+      } else {
+        console.log(data)
+        if (data.length > 0) {
+          res.send({
+            'status': 1001,
+            'message': '用户已存在!'
+          });
+        } else {
+          let newAccount = new models.Login({
+            account: req.body.account,
+            password: req.body.password
+          });
+          // 保存数据newAccount数据进mongoDB
+          newAccount.save((err, data) => {
+            if (err) {
+              res.send({
+                'status': 1001,
+                'message': '注册失败!',
+                'data': err
+              });
+            } else {
+              res.send({
+                'status': 1000,
+                'message': '注册成功!'
+              });
+            }
+          });
+        }
       }
     }
   });
-
-  // let newAccount = new models.Login({
-  //     account : req.body.account,
-  //     password : req.body.password
-  // });
-  // // 保存数据newAccount数据进mongoDB
-  // newAccount.save((err,data) => {
-  //     if (err) {
-  //         res.send(err);
-  //     } else {
-  //         res.send({'status': 1000, 'message': 'Register successfully!'});
-  //     }
-  // });
 });
 // 获取已有账号接口
 router.post('/api/user/login', (req, res) => {

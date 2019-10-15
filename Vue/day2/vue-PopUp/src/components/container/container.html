@@ -1,0 +1,45 @@
+<div class="page actionsheet js_show">
+    <div class="page__hd">
+      <h1 class="page__title">ActionSheet</h1>
+      <p class="page__desc">弹出式菜单</p>
+    </div>
+    <div class="page__bd page__bd_spacing">
+      <a href="javascript:;" @click="toggleOpen" class="weui-btn weui-btn_default" id="showIOSActionSheet">iOS ActionSheet</a>
+      <a href="javascript:;" @click="toggleOpen2" class="weui-btn weui-btn_default" id="showAndroidActionSheet">Android ActionSheet</a>
+    </div>
+    <!--BEGIN actionSheet-->
+    <div id="ios">
+      <div class="weui-mask" id="iosMask" v-show="mask" @click="toggleMask"></div>
+      <div :class="['weui-actionsheet',{'weui-actionsheet_toggle':isOpen}]" id="iosActionsheet">
+        <div class="weui-actionsheet__title">
+          <p class="weui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</p>
+        </div>
+        <div class="weui-actionsheet__menu">
+          <div class="weui-actionsheet__cell">示例菜单</div>
+          <div class="weui-actionsheet__cell">示例菜单</div>
+          <div class="weui-actionsheet__cell weui-actionsheet__cell_warn">负向菜单</div>
+        </div>
+        <div class="weui-actionsheet__action">
+          <div @click="toggleOpen" class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="android">
+      <div class="weui-skin_android" id="androidActionsheet" v-show="isOpen2">
+        <div class="weui-mask" v-show="mask2" @click="toggleMask2"></div>
+        <div class="weui-actionsheet">
+          <div class="weui-actionsheet__menu">
+            <div class="weui-actionsheet__cell">示例菜单</div>
+            <div class="weui-actionsheet__cell">示例菜单</div>
+            <div class="weui-actionsheet__cell">示例菜单</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--END actionSheet-->
+    <div class="page__ft j_bottom">
+      <a href="javascript:home()"><img src="https://weui.io/images/icon_footer_link.png"></a>
+    </div>
+
+  </div>
