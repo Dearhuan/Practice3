@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <!-- 组件的名称 组件可复用 -->
+    <button-counter title="title1:" @clicknow="clicknow"></button-counter>
+    hello this is dearhuan 
+    <button-counter title="title2:" @clicknow="clicknow"></button-counter>
+    <button-counter title="title3:" @clicknow="clicknow"></button-counter>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script>
+    Vue.component('button-counter', {
+      props: ['title'],  //通过 Prop 向子组件传递数据
+      data(){
+        return {
+          count: 0
+        }
+      },
+      //slot 插槽
+      template: '<div><h1>hello</h1><button @click="clickfun">{{title}}You clicked me {{ count }} times.</button><slot></slot></div>',
+      methods: {
+        clickfun(){
+          this.count++;
+          this.$emit('clicknow',this.count)  //传递count
+        }
+      },
+    })
+
+    new Vue({
+      el: '#demo',
+      methods: {
+        clicknow(count){
+          console.log(count)
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

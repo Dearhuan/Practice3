@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .btnAtive {
+      background: red;
+      color: #fff;
+    }
+
+    .container {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      background: #ccc;
+    }
+
+    .container>div {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button v-for="(tab,index) in tabs" :class="activeIndex == index?'btnAtive':''" @click="toggleTab(index)" v-text="tab"></button>
+    <div class="container">
+      <div v-for="(ele,index) in contents" v-show="activeIndex == index" v-text="ele"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        tabs: ['1','2','3'],
+        contents: [
+          'content1',
+          'content2',
+          'content3'
+        ],
+        activeIndex: 0
+      },
+      methods: {
+        toggleTab(index){
+          this.activeIndex = index; 
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

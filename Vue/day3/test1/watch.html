@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>ask a question</p>
+    <input type="text" v-model="question">
+    <p v-text="answer"></p>
+  
+  </div>
+
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script>
+    const watcher = new Vue({
+      el: '#app',
+      data: {
+        question: '',
+        answer: 'I cannot give you an answer until you ask a question!',
+      },
+      watch: {
+        question:function(newQuestion, oldQuestion){
+          this.answer = 'waiting for you to stop typing'
+          this.debouncedGetAnswer()
+        }
+      },
+      created(){
+        this.debouncedGetAnswer = _.debounce(this.getAnswer,500)
+      },
+      methods: {
+        getAnswer(){
+          if(this.question.indexOf('?') === -1){
+            this.answer = 'Questions usually contain a question mark. ;-)';
+            return
+          }
+          this.answer = 'thinking...'
+          var vm = this
+          axios.get('https://yesno.wtf/api').then((res)=>{
+            vm.answer = _.capitalize(res.data.answer);
+          }).catch((err)=>{
+            vm.answer = 'error' + err
+          })
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

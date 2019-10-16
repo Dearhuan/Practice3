@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./stylesheets/weui.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <title>今日头条</title>
+</head>
+
+<body>
+  <!-- 头部 -->
+  <header>今日头条</header>
+  <!-- 搜索框 -->
+  <div class="weui-search-bar" id="searchBar">
+    <form class="weui-search-bar__form">
+      <div class="weui-search-bar__box">
+        <i class="weui-icon-search"></i>
+        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+      </div>
+      <label class="weui-search-bar__label" id="searchText"
+        style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">
+        <i class="weui-icon-search"></i>
+        <span>搜索</span>
+      </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+  </div>
+  <!-- 列表页 -->
+  <div class="weui-panel weui-panel_access">
+    <!-- 挂载点：news   使用v-for生成多个a标签 -->
+    <div id="news" class="weui-panel__bd">
+      <a href="javascript:void(0);" v-for="item in items" class="weui-media-box weui-media-box_appmsg">
+        <div style="display:block" v-show="item.author.avatar_url ? item.author.avatar_url : ''"
+          class="weui-media-box__hd">
+          <img class="weui-media-box__thumb" v-bind:src="item.author.avatar_url ? item.author.avatar_url : ''" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{item.title}}</h4>
+          <p class="weui-media-box__desc">{{item.author.loginname}}</p>
+        </div>
+      </a>
+    </div>
+    <div class="weui-panel__ft">
+      <a href="javascript:void(0);" @click="" class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <span class="weui-cell__ft"></span>
+      </a>
+    </div>
+  </div>
+  <!-- 底部 -->
+  <div class="weui-tabbar" id="footer">
+    <a href="javascript:;" v-for="item in items" class="weui-tabbar__item weui-bar__item_on">
+      <span style="display: inline-block;position: relative;">
+        <img v-bind:src="item.src" alt="" class="weui-tabbar__icon">
+        <span v-bind:class="['weui-badge',{'weui-badge_dot': item.dot}]" style="position: absolute;top: -2px;right: -13px;">{{item.num}}</span>
+      </span>
+      <p v-text="item.title" class="weui-tabbar__label"></p>
+    </a>
+  </div>
+
+  <script src="./js/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#news',
+      data: {
+        items: []
+      },
+      methods: {
+        getNews() {
+          axios.get('https://cnodejs.org/api/v1/topics', {
+            params: {
+              page: 1,
+              tab: 'job',
+              limit: 10
+            }
+          }).then((res) => {
+            this.items = res.data.data;
+            console.log(res.data.data);
+          })
+        }
+      }
+    });
+    vm.getNews();
+
+    let ft = new Vue({
+      el: "#footer",
+      data: {
+        items: [{
+            src: './images/icon_tabbar.png',
+            num: '8',
+            dot: 0,
+            title: '微信'
+          },
+          {
+            src: './images/icon_tabbar.png',
+            dot: 1,
+            title: '通讯录'
+          },
+          {
+            src: './images/icon_tabbar.png',
+            dot: 1,
+            title: '发现'
+          },
+          {
+            src: './images/icon_tabbar.png',
+            dot: 1,
+            title: '我'
+          }
+        ]
+      },
+      methods: {
+
+      }
+    });
+    console.log(ft.items)
+  </script>
+</body>
+
+</html> 
