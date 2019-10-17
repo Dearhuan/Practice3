@@ -1,5 +1,5 @@
 <div class="weui-tabbar">
-  <a href="javascript:;" v-for="(item,index) in tabs" @click="hightLight(index)"
+  <a href="javascript:;" v-for="(item,index) in tabs" @click="hightLight(index,item.cName)"
     :class="['weui-tabbar__item',{'weui-bar__item_on':rank === index}]">
     <span style="display: inline-block;position: relative;">
       <img :src="icon" alt="" class="weui-tabbar__icon">

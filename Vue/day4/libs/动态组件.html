@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 260px;
+      height: 200px;
+      background: #fff;
+      box-shadow: 0 0 10px #ccc;
+      margin: 0 auto;
+      margin-top: 20%;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+    }
+
+    ul li {
+      list-style: none;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    ul li:hover {
+      color: #00D2FD;
+    }
+
+    ul li.active {
+      border-bottom: 2px solid #00D2FD;
+      color: #00D2FD;
+    }
+
+    .content {
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in list"
+          v-bind:class="{active:active === index}"
+          @click="toggle(index)"
+          v-text="item"></li>
+    </ul>
+    <component class="content" :is="current"></component>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script>
+    let item1 = {
+      template: `<p>Vue 学完就可以找工作了哦</p>`
+    }
+    let item2 = {
+      template: `<p>PHP有时间一定要去学</p>`
+    }
+    let item3 = {
+      template: `<p>深入理解JS怎么就这么的难呢 fuck</p>`
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        list: ['Vue','Php','Js'],
+        coms: ['item1','item2','item3'],
+        current: 'item1',
+        active: 0
+      },
+      components: {
+        item1,
+        item2,
+        item3
+      },
+      methods: {
+        toggle(index){
+          this.current = this.coms[index];
+          this.active = index;
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

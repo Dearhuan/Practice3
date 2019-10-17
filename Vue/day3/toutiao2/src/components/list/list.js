@@ -1,12 +1,14 @@
 import Vue from 'vue/dist/vue'
 import template from './list.html'
 import axios from 'axios'
+import observer from '../../libs/observer';
 
-const list = new Vue({
+const vm = new Vue({
   el: '#list',
   data: {
     news: [],
-    page: 1
+    page: 1,
+    searchTxt: ''
   },
   template,
   methods: {
@@ -18,12 +20,33 @@ const list = new Vue({
           limit: 10
         }
       }).then((res)=>{
+        // 数组的解构和合并
         this.news = [...this.news,...res.data.data];
         console.log(res)
       })
     }
   },
+  computed: {
+    newsComputed(){
+      // console.log(searchTxt);
+      if(this.searchTxt){
+        // 数组的filter过滤，返回满足条件的，结果为数组
+        return this.news.filter((item)=>{
+          if(item.title.indexOf(this.searchTxt) != -1){
+            return item
+          }
+        })
+      }else{
+        return this.news
+      }
+    }
+  },
 });
 
-list.getNews();
-export default list
+console.log(observer);
+observer.on('setSearchTxt',(searchTxt)=>{
+  vm.searchTxt = searchTxt
+})
+
+vm.getNews();
+export default vm

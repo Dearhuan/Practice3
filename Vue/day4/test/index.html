@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./weui.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="app">
+    <i-header></i-header>
+    <i-search></i-search>
+    <i-list></i-list>
+    <i-footer></i-footer>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+  <script src="./observer.js"></script>
+  <script>
+    Vue.component('i-header', {
+      props: [],
+      data() {
+        return {
+          title: '今日头条'
+        }
+      },
+      template: '<header v-text="title"></header>'
+
+    });
+    Vue.component('i-search', {
+      props: [],
+      data() {
+        return {
+          isFocus: false,
+          searchTxt: '',
+          cancel: '取消',
+          title: '搜索'
+        }
+      },
+      template: `<div :class="['weui-search-bar',{'weui-search-bar_focusing':isFocus}]" id="searchBar">
+                  <form class="weui-search-bar__form">
+                    <div class="weui-search-bar__box">
+                      <i class="weui-icon-search"></i>
+                      <input type="search" v-model="searchTxt" class="weui-search-bar__input" id="searchInput" placeholder="搜索"
+                        required="">
+                      <a href="javascript:" @click="clear" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label @click="toggleFocus" class="weui-search-bar__label" id="searchText"
+                      style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">
+                      <i class="weui-icon-search"></i>
+                      <span v-text="title"></span>
+                    </label>
+                  </form>
+                  <a href="javascript:" @click="toggleFocus" v-text="cancel" class="weui-search-bar__cancel-btn" id="searchCancel"></a>
+                </div>`,
+      methods: {
+        toggleFocus() {
+          this.isFocus = !this.isFocus
+        },
+        clear() {
+          this.searchTxt = ''
+        }
+      },
+      watch: {
+        searchTxt() {
+          observer.emit('setSearchTxt', this.searchTxt)
+        }
+      }
+    });
+    Vue.component('i-list', {
+      props: [],
+      data() {
+        return {
+          news: [],
+          page: 1,
+          searchTxt: ''
+        }
+      },
+      template: `<div class="weui-panel weui-panel_access">
+                  <div id="news" class="weui-panel__bd">
+                    <a href="javascript:void(0);" v-for="(item,index) in newsComputed" class="weui-media-box weui-media-box_appmsg">
+                      <div class="weui-media-box__hd" style="display: block;"><img
+                          :src="item.author.avatar_url" alt="" class="weui-media-box__thumb">
+                      </div>
+                      <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" v-text="item.title"></h4>
+                        <p class="weui-media-box__desc" v-text="item.author.loginname"></p>
+                      </div>
+                    </a>
+                  </div>
+                  <div @click="getNews" class="weui-panel__ft">
+                    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                      <div class="weui-cell__bd">查看更多</div>
+                      <span class="weui-cell__ft"></span>
+                    </a>
+                  </div>
+                </div>`,
+      methods: {
+        getNews() {
+          axios.get('https://cnodejs.org/api/v1/topics', {
+            params: {
+              page: this.page++,
+              tab: 'job',
+              limit: 10
+            }
+          }).then((res) => {
+            // 数组的解构和合并
+            this.news = [...this.news, ...res.data.data];
+            console.log(res)
+          })
+        }
+      },
+      computed: {
+        newsComputed() {
+          // console.log(searchTxt);
+          if (this.searchTxt) {
+            // 数组的filter过滤，返回满足条件的，结果为数组
+            return this.news.filter((item) => {
+              if (item.title.indexOf(this.searchTxt) != -1) {
+                return item
+              }
+            })
+          } else {
+            return this.news
+          }
+        }
+      },
+    })
+    Vue.component('i-footer', {
+      props: [],
+      data() {
+        return {
+          icon: './icon_tabbar.png',
+          rank: 0,
+          cName: 'we-chat',
+          tabs: [{
+              title: '微信',
+              url: '/wechat',
+              num: 8,
+              dot: false,
+              cName: 'we-chat',
+            },
+            {
+              title: '通讯录',
+              url: '/link',
+              num: 0,
+              dot: false,
+              cName: 'con-cat',
+            },
+            {
+              title: '发现',
+              url: '/find',
+              num: 0,
+              dot: true,
+              cName: 're-covery',
+            },
+            {
+              title: '我',
+              url: '/mine',
+              num: 0,
+              dot: false,
+              cName: 'my-mine',
+            }
+          ]
+        }
+      },
+      template: `<div class="weui-tabbar">
+                  <a href="javascript:;" v-for="(item,index) in tabs" @click="hightLight(index,item.cName)"
+                    :class="['weui-tabbar__item',{'weui-bar__item_on':rank === index}]">
+                    <span style="display: inline-block;position: relative;">
+                      <img :src="icon" alt="" class="weui-tabbar__icon">
+                      <span v-if="item.num>0" class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+                      <span v-if="item.dot" class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p class="weui-tabbar__label" v-text="item.title"></p>
+                  </a>
+                </div>`,
+      methods: {
+        hightLight(index, cName) {
+          this.rank = index;
+          this.cName = cName;
+          console.log(index, cName)
+        }
+      },
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+
+      },
+    })
+  </script>
+</body>
+
+</html>

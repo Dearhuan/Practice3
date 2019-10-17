@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue'
 import template from './search.html'
+import observer from '../../libs/observer'
 
 const search = new Vue({
   el: '#search',
@@ -18,6 +19,11 @@ const search = new Vue({
       this.searchTxt = ''
     }
   },
+  watch: {
+    searchTxt(){
+      observer.emit('setSearchTxt',this.searchTxt)
+    }
+  }
 });
 
 export default search
