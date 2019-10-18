@@ -57,7 +57,9 @@
           @click="toggle(index)"
           v-text="item"></li>
     </ul>
-    <component class="content" :is="current"></component>
+    <keep-alive>
+      <component class="content" :is="current"></component>
+    </keep-alive>
   </div>
   <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
   <script>

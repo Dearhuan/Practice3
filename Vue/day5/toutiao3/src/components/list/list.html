@@ -1,0 +1,19 @@
+<div class="weui-panel weui-panel_access">
+  <div id="news" class="weui-panel__bd">
+    <a href="javascript:void(0);" v-for="(item,index) in newsComputed" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd" style="display: block;"><img
+          :src="item.author.avatar_url" alt="" class="weui-media-box__thumb">
+      </div>
+      <div class="weui-media-box__bd">
+        <h4 class="weui-media-box__title" v-text="item.title"></h4>
+        <p class="weui-media-box__desc" v-text="item.author.loginname"></p>
+      </div>
+    </a>
+  </div>
+  <div @click="getNews" class="weui-panel__ft">
+    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+      <div class="weui-cell__bd">查看更多</div>
+      <span class="weui-cell__ft"></span>
+    </a>
+  </div>
+</div>
