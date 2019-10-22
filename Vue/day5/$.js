@@ -22,7 +22,7 @@ let $ = {
   }
 }
 
-// $.css().html().show().click().animate();
+$.css().html().show().click().animate();
 
 
 //为什么return this？
@@ -31,28 +31,28 @@ let $ = {
 //this的指向
   //因为在一个对象里面，this指向的是对象本身，而我们连续调用方法的时候，这些方法都是在对象内部定义的，所以this是可以访问到这些方法。
 
-/* ------------------------异步编程的改进写法------------------------------------- */
+/* ------------------------异步操作的一些写法------------------------------------- */
 //1.异步的回调地狱写法
-/* function ajax(callback) {
-  setTimeout(()=> {
-      // console.log('hello');
-      callback();
-  }, 500)
-}
-ajax(() => {
-  console.log('回调第1次')
-  ajax(()=>{
-      console.log('回调第2次')
-      ajax(()=>{
-          console.log('回调第3次')
-          ajax(()=>{
-              console.log('回调第4次')
-          })
-      })
-  })
-}); */
+// function ajax(callback) {
+//   setTimeout(()=> {
+//       // console.log('hello');
+//       callback();
+//   }, 500)
+// }
+// ajax(() => {
+//   console.log('回调第1次')
+//   ajax(()=>{
+//       console.log('回调第2次')
+//       ajax(()=>{
+//           console.log('回调第3次')
+//           ajax(()=>{
+//               console.log('回调第4次')
+//           })
+//       })
+//   })
+// });
 
-//2.通过Promise的的.then()方法实现异步
+//2.通过Promise实现异步
 /* function delay(word) {
   return new Promise((resolve, reject) => {
       setTimeout(()=>{
@@ -98,10 +98,11 @@ start();
 
 
 /* ---------------------ajax和axios的区别------------------------------ */
-/* jQuery中的ajax是基于原生XMLhttprequest请求的封装；
-   Axios是基于Promise对ajax的二次封装 */
+/* jQuery中的ajax是基于原生XMLhttprequest请求的封装，
+   JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理；
+   Axios是基于Promise对ajax的二次封装，默认返回数据格式为JSON */
 
-/* $.ajax({
+$.ajax({
   url: 'http://jsonplaceholder.typicode.com/users',
   type: 'get',
   dataType: 'json',
@@ -127,4 +128,4 @@ axios({
   console.log(response.data);
 }).catch(function (error) {
   console.log(error);
-}); */
+});

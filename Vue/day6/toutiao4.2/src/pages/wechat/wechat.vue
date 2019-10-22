@@ -1,14 +1,16 @@
 <template>
   <div>
     <Header color="#27c180">Wechat</Header>
-    <Search />
+    <Search/>
     <Panel></Panel>
+    <LoginBox/>
   </div>
 </template>
 <script>
-import Header from '../../components/header/header.vue'
-import Search from '../../components/search/search.vue'
-import Panel from '../../components/panel/panel.vue'
+import Header from "../../components/header/header.vue";
+import Search from "../../components/search/search.vue";
+import Panel from "../../components/panel/panel.vue";
+import LoginBox from "../../components/loginbox/loginbox.vue"
 export default {
   created() {
     window.onscroll = () => {
@@ -27,7 +29,8 @@ export default {
   components: {
     Header,
     Search,
-    Panel
+    Panel,
+    LoginBox
   }
 };
 </script>
