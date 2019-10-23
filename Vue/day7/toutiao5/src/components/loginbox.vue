@@ -1,6 +1,7 @@
 <template>
   <div class="login-box">
-    <a class="m-btn m-btn-blue login-btn">登录/注册</a>
+    <!-- <a class="m-btn m-btn-blue login-btn">登录/注册</a> -->
+    <router-link class="m-btn m-btn-blue login-btn" :to="{ name: 'login'}">登录/注册</router-link>
   </div>
 </template>
 

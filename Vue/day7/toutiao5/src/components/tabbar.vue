@@ -1,6 +1,6 @@
 <template>
   <div class="weui-tabbar">
-    <a
+    <router-link
       v-for="(item, index) in tabbar"
       :key="index"
       @click="highLight(index)"
@@ -8,6 +8,9 @@
       :class="['weui-tabbar__item',{
         'weui-bar__item_on': offset === index
     }]"
+      :to="{
+      name:item.url
+    }"
     >
       <span style="display: inline-block;position: relative;">
         <img :src="icon" alt class="weui-tabbar__icon" />
@@ -23,39 +26,42 @@
         ></span>
       </span>
       <p class="weui-tabbar__label" v-text="item.title"></p>
-    </a>
+    </router-link>
   </div>
 </template>
 <script>
-import icon from '../../images/icon_tabbar.png'
-import observer from '../../tools/observer'
+import icon from '../assets/icon_tabbar.png'
+import observer from '../tools/observer'
 export default {
+    props: {
+      offset: Number
+    },
     data() {
         return {
             icon,
             tabbar: [{
                 title: '微信',
-                url: '/wechat',
+                url: 'wechat',
                 badge: 8,
                 dot: false
             }, {
                 title: '通讯录',
-                url: '/contact',
+                url: 'contact',
                 badge: 0,
                 dot: false
             }, {
                 title: '发现',
-                url: '/recover',
+                url: 'find',
                 badge: 0,
                 dot: true
             }, {
                 title: '我',
-                url: '/mine',
+                url: 'mine',
                 badge: 0,
                 dot: false
             }],
             // 控制高亮
-            offset: 0
+            // offset: 0
         }
     },
     methods: {

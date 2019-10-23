@@ -1,16 +1,23 @@
 <template>
   <div>
     <Header color="#ff0049">Concact</Header>
-    <List></List>
+    <swiper></swiper>
+    <Panel  tab="job"></Panel>
+    <Tabbar :offset="1" />
   </div>
 </template>
 <script>
 import Header from "../components/header.vue";
-import List from '../components/list.vue';
+import Panel from "../components/panel.vue";
+import Tabbar from "../components/tabbar.vue";
+import Swiper from "../components/swiper.vue"
+
 export default {
   components: {
     Header,
-    List
+    Panel,
+    Tabbar,
+    Swiper
   }
 };
 </script>

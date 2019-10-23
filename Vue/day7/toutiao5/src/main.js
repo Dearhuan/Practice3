@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'weui'
+import './assets/styles.css'
+import './assets/loginbox.css'
 
 Vue.config.productionTip = false
 

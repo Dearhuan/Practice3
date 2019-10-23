@@ -6,11 +6,12 @@
   </div>
 </template>
 <script>
-import Wechat from './wechat.vue';
-import Contact from './contact.vue';
-import Find from './find.vue';
-import Mine from './mine.vue';
+import Wechat from "./wechat.vue";
+import Contact from "./contact.vue";
+import Find from "./find.vue";
+import Mine from "./mine.vue";
 import observer from "../tools/observer";
+import "../assets/styles.css";
 export default {
   data() {
     return {
@@ -37,7 +38,7 @@ export default {
       // console.log(index)
     });
   },
-  components:{
+  components: {
     Wechat,
     Contact,
     Find,
@@ -45,3 +46,4 @@ export default {
   }
 };
 </script>
+

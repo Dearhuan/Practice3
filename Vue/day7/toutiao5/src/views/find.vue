@@ -1,13 +1,16 @@
 <template>
   <div>
     <Header color="#e6c562">Find</Header>
-    <swiper></swiper>
+    <Panel tab="share"></Panel>
+    <Tabbar :offset="2" />
   </div>
 </template>
 
 <script>
 import Header from "../components/header.vue";
-import Swiper from "../components/swiper.vue"
+import Tabbar from "../components/tabbar.vue"
+import Panel from "../components/panel.vue"
+
 export default {
   data() {
     return {
@@ -16,7 +19,8 @@ export default {
   },
   components: {
     Header,
-    Swiper
+    Tabbar,
+    Panel
   }
 };
 </script>

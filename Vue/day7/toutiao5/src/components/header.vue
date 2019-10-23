@@ -6,6 +6,7 @@
     </header>
 </template>
 <script>
+
 export default {
     props: {
         color: String
@@ -17,6 +18,4 @@ export default {
     },
 }
 </script>
-<style scoped>
 
-</style>

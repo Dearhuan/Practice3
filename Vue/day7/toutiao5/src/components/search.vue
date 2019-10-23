@@ -1,6 +1,5 @@
 <template>
   <div
-    v-bind:abc="title"
     :class="['weui-search-bar',{
     'weui-search-bar_focusing': isFocus
 }]"
@@ -40,7 +39,7 @@
 </template>
 <script>
 // import txt from './search.txt'
-import observer from '../../tools/observer'
+import observer from '../tools/observer'
 export default {
     data() {
         return {

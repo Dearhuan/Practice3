@@ -1,11 +1,17 @@
 <template>
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
-      <a
+      <router-link
         v-for="(item,index) in newsComputed"
         :key="index"
         href="javascript:void(0);"
         class="weui-media-box weui-media-box_appmsg"
+        :to="{
+          name: 'detail',
+          params:{
+            id: index
+          }
+        }"
       >
         <div class="weui-media-box__hd">
           <img class="weui-media-box__thumb" :src="item.author.avatar_url" alt />
@@ -14,7 +20,7 @@
           <h4 class="weui-media-box__title" v-text="item.title"></h4>
           <p class="weui-media-box__desc">{{item.author.loginname|captian}}</p>
         </div>
-      </a>
+      </router-link>
     </div>
     <div @click="getNews" class="weui-panel__ft">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
@@ -26,8 +32,11 @@
 </template>
 <script>
 import axios from "axios";
-import observer from "../../tools/observer";
+import observer from "../tools/observer.js";
 export default {
+  props: {
+    tab: String
+  },
   data() {
     return {
       // 新闻数据
@@ -43,7 +52,7 @@ export default {
         .get("https://cnodejs.org/api/v1/topics", {
           params: {
             page: this.page++, //Number 页数
-            tab: "ask", // String 主题分类。目前有 ask share job good
+            tab: this.tab, // String 主题分类。目前有 ask share job good
             limit: 10, // Number 每一页的主题数量
             mdrender: false // String 当为 false 时
           }
