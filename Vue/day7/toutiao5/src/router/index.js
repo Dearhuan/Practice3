@@ -6,10 +6,10 @@ import Login from '@/components/verifybox.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [{
-      path: '/wechat',
+      path: '/',
       name: 'wechat',
       component: Wechat
     },
@@ -39,7 +39,7 @@ export default new Router({
       component: () => import( /* webpackChunkName: '懒加载分组名' */ '../views/detail.vue')
     },
     {
-      path: '/',
+      path: '/wechat',
       redirect: '/wechat'
     }
   ],

@@ -3,6 +3,7 @@
     <Header color="#576b95">Mine</Header>
     <Panel tab="good" />
     <Tabbar :offset="3" />
+    <Gallery/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Header from "../components/header.vue";
 import Tabbar from "../components/tabbar.vue"
 import Panel from "../components/panel.vue"
+import Gallery from "../components/gallery.vue";
 
 export default {
   data() {
@@ -18,7 +20,8 @@ export default {
   components: {
     Header,
     Tabbar,
-    Panel
+    Panel,
+    Gallery
   }
 };
 </script>

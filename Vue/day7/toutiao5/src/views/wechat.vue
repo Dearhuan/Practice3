@@ -5,6 +5,7 @@
     <Panel tab="ask"></Panel>
     <LoginBox></LoginBox>
     <Tabbar :offset="0" />
+    <Gallery />
   </div>
 </template>
 <script>
@@ -13,11 +14,10 @@ import Search from "../components/search.vue";
 import Panel from "../components/panel.vue";
 import LoginBox from "../components/loginbox.vue";
 import Tabbar from "../components/tabbar.vue";
+import Gallery from "../components/gallery.vue";
 export default {
-  data(){
-    return {
-      searchBarFixed : false
-    }
+  data() {
+    return {};
   },
   created() {
     window.onscroll = () => {
@@ -35,31 +35,15 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
-  methods: {
-    handleScroll() {
-      let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      console.log(scrollTop);
-      let offsetTop = document.querySelector('#searchBar').offsetTop;
-      if(scrollTop > offsetTop){
-        this.searchBarFixed = true
-      }else{
-        this.searchBarFixed = false
-      }
-    }
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
+
   // 局部注册
   components: {
     Header,
     Search,
     Panel,
     LoginBox,
-    Tabbar
+    Tabbar,
+    Gallery
   }
 };
 </script>
