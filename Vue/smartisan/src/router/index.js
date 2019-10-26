@@ -5,6 +5,7 @@ import Index from '@/views/index.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -25,6 +26,11 @@ export default new Router({
       path: '/mine',
       name: 'mine',
       component: () => import( '../views/mine.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import( '../views/login.vue')
     },
     {
       path: '/index',

@@ -1,5 +1,5 @@
 <template>
-  <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+  <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide>
       <img src="../assets/images/banner1.png" alt />
@@ -14,7 +14,6 @@
     <div class="swiper-pagination" slot="pagination"></div>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
-    <div class="swiper-scrollbar" slot="scrollbar"></div>
   </swiper>
 </template>
 
@@ -28,15 +27,7 @@ export default {
     return {
       swiperOption: {
         pagination: ".swiper-pagination1",
-        slidesPerView: 1,
-        spaceBetween: 30,
         centeredSlides: false,
-        spaceBetween: 0,
-        onSlideChangeEnd: swiper => {
-          //这个位置放swiper的回调方法
-          this.page = swiper.realIndex + 1;
-          this.index = swiper.realIndex;
-        },
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
@@ -44,7 +35,8 @@ export default {
         //自动播放
         autoplay: {
           delay: 2000,
-          disableOnInteraction: false
+          disableOnInteraction: false,
+          stopOnLastSlide:true
         },
         pagination: {
           el: ".swiper-pagination",
@@ -56,15 +48,10 @@ export default {
     };
   },
   computed: {
-    swiper() {
-      return this.$refs.mySwiper.swiper;
-    }
+
   },
   mounted() {
-    // current swiper instance
-    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    console.log("this is current swiper instance object", this.swiper);
-    this.swiper.slideTo(0, 0, false);
+  
   },
   components: {
     swiper,

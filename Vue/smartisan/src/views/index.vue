@@ -3,8 +3,8 @@
     <Header></Header>
     <Search></Search>
     <Swiper/>
-    <!-- <Panel></Panel> -->
-    <Tabbar></Tabbar>
+    <Panel></Panel>
+    <Tabbar :offset='0'></Tabbar>
   </div>
 </template>
 

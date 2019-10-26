@@ -1,447 +1,207 @@
 <template>
   <section class="home-box">
     <article class="headline-wrap">
-      <h3>猜你喜欢</h3>
+      <h3 v-text="title"></h3>
     </article>
     <aside class="guesslike-wrap common-flow-layout clearfix">
-      <section class="sku-item-normal-box flow-item guess-like-item">
+      <section
+        v-for="(item, index) in goods"
+        :key="index"
+        class="sku-item-normal-box flow-item guess-like-item"
+      >
         <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/66b25ef2a60c262b6c2de2e2b60acb09.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
+          <img :src="item.images" alt="商品图片" />
           <aside class="item-promotion-tag">
-            <span>满398减70</span>
+            <span></span>
           </aside>
         </figure>
         <article class="item-title">
-          <h3>Smartisan T恤 红白机</h3>
+          <h3 v-text="item.skuTitle"></h3>
         </article>
         <article class="item-bottom-info">
           <aside class="item-price">
             <span class="yuan">¥</span>
-            <span>149</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>C-force USB-C多功能转接器</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>168</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">满减</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/1132e9af70e9d0a7abd2a8605c75b205.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 圆领 莫里斯·麦当劳诞生</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/3ed99332f7fc6531d1448140b7dc0e46.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 圆领 开普勒轨道</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/3218a971d4d837c31e10fa738ef7f91f.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 连帽 多普勒效应</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/567f3ae5e5c244ad3088bc2550ef3091.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 圆领 百年孤独</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/c4aec07a9b618d020b1f00b9ce9d3656.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 连帽 Smartisan 经典款</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/50ad206f8df9439a4372a055e447d28b.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 圆领 DNA 双螺旋</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/3bdfee2a8681c05708ea35b794ed33c4.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 卫衣 连帽 莫里斯·麦当劳诞生</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>249</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/32ee5c79f8b53fd6724530103f7c85bf.png?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-          <aside class="item-promotion-tag">
-            <span>满398减70</span>
-          </aside>
-        </figure>
-        <article class="item-title">
-          <h3>落栗 衬衫 牛津纺</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>199</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/db372a4af2725e2a6262fd377b0488f4.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普小印手持照片打印机 Sprocket PLUS</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>499</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">新品</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/f6c83d2ed99d05eb9e3936bbba6fdaeb.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）DeskJet 2676 彩色喷墨无线多功能打印机</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>449</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/3fdd1ef99b445aaf57726efcbad18fd3.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）DeskJet 3636 彩色喷墨无线多功能打印机</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>499</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/1e6afa8b12edb8dc9e4d34d28ef2d8e3.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）Smart Tank 511 彩色喷墨连供多功能打印机</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>1299</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/eb7a595b90092112c9f370d50a67bae9.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）Smart Tank 519 彩色喷墨连供多功能打印机</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>1199</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/28e9e5aa0b2092c1b1d88923fa98fc7a.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）Mini M17w 黑白激光无线单功能打印机</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>899</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/b161cb80c5d50feca3f4c2555b420e0a.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普(HP) 口袋照片打印机ZINK相纸（20张）</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>79</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">新品</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/e74b000af097c95e36d4214c2a69c346.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）GT53XL 黑色墨水</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>59</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">新品</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/62540d7e4f3ae9db080139d4bcc53f21.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>惠普（HP）GT52彩色墨水</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>64</span>
-          </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">新品</span>
-          </aside>
-        </article>
-      </section>
-      <section class="sku-item-normal-box flow-item guess-like-item">
-        <figure class="item-cover">
-          <img
-            src="https://resource.smartisan.com/resource/d4480234a2f24b0ff5acd98288fd902d.jpg?x-oss-process=image/format,webp"
-            alt="商品图片"
-          />
-        </figure>
-        <article class="item-title">
-          <h3>Smartisan 双口 &amp; 快充车载充电器</h3>
-        </article>
-        <article class="item-bottom-info">
-          <aside class="item-price">
-            <span class="yuan">¥</span>
-            <span>59</span>
-            <span class="orignal">
-              <span class="yuan">¥</span>79
+            <span v-text="item.originalPrice"></span>
+            <span v-if="item.discountPrice>0" class="orignal">
+              <span v-if="item.discountPrice>0" class="yuan">¥</span>{{item.discountPrice}}
             </span>
           </aside>
-          <aside class="item-promotion-tags">
-            <span class="tag">优惠券</span>
+          <aside v-if="item.promotionList.length>0" class="item-promotion-tags">
+            <span class="tag">{{item.promotionList[0].tag}}</span>
           </aside>
         </article>
       </section>
     </aside>
-    
   </section>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      title: "猜你喜欢",
+      goods: []
+    };
+  },
+  methods: {
+    getGoods() {
+      let _self = this;
+      axios.get("http://localhost:3000/goods").then(data => {
+        console.log(data.data);
+        _self.goods = data.data.goods;
+      });
+    }
+  },
+  mounted() {
+    this.getGoods();
+  }
+};
 </script>
+
+<style scoped>
+.home-box + .home-box {
+  margin-top: 0.7rem;
+}
+.home-box {
+  position: relative;
+  /* padding-top: 0.7rem; */
+}
+.home-box .headline-wrap {
+  position: relative;
+  padding: 0 0 0rem 1rem;
+  cursor: pointer;
+}
+.home-box .headline-wrap h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.8);
+}
+.guesslike-wrap {
+  width: calc(100% - 1.2rem);
+  /* margin: 0 auto; */
+  margin-bottom: 3.2rem;
+  height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.common-flow-layout {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.common-flow-layout .flow-item {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 calc(50% - 0.15rem);
+  flex: 0 0 calc(50% - 0.15rem);
+  margin-bottom: 0.8rem;
+}
+.sku-item-normal-box {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.guesslike-wrap .guess-like-item .item-cover {
+  height: 11.25rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+.sku-item-normal-box .item-cover {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.03);
+}
+.sku-item-normal-box .item-cover img {
+  mix-blend-mode: multiply;
+}
+img {
+  width: 100%;
+}
+img {
+  border: 0;
+}
+.sku-item-normal-box .item-title {
+  margin: 0.3rem 0 0.1rem;
+  padding: 0 0.3rem;
+}
+.guesslike-wrap .guess-like-item h3 {
+  font-size: 0.65rem;
+}
+.sku-item-normal-box .item-title h3 {
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.item-bottom-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 0.3rem;
+}
+.item-bottom-info .item-price {
+  font-family: Arial;
+  font-size: 0.7rem;
+  font-weight: bolder;
+  color: #d44d44;
+}
+.item-bottom-info .item-price .orignal {
+    position: relative;
+    margin-left: 5px;
+    font-size: .5rem;
+    color: #ccc;
+    font-weight: 400;
+}
+.guesslike-wrap .guess-like-item .item-price .yuan {
+  font-size: 0.55rem;
+}
+
+.item-bottom-info .item-price .yuan {
+  margin-right: 3px;
+  font-size: 0.5rem;
+}
+.item-promotion-tags {
+  font-size: 0.5rem;
+  font-weight: bolder;
+}
+.item-promotion-tags .tag {
+  position: relative;
+  display: inline-block;
+  padding: 0.12rem 0.4rem 0.1rem;
+  border-radius: 0.6rem;
+  color: #d56159;
+  background: #f6ebea;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+</style>
