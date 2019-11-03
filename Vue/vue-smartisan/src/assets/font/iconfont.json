@@ -1,0 +1,65 @@
+{
+  "id": "1320077",
+  "name": "meituan",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1727030",
+      "name": "闪购",
+      "font_class": "shangou",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "3498425",
+      "name": "搜索--1",
+      "font_class": "sousuo",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5512550",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "6202576",
+      "name": "多云",
+      "font_class": "duoyun",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7025627",
+      "name": "我 的",
+      "font_class": "mine",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "7570430",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "7644457",
+      "name": "首页-选中",
+      "font_class": "shouye",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "9850885",
+      "name": "消 息",
+      "font_class": "xiaoxi",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    }
+  ]
+}

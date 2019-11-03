@@ -1,5 +1,5 @@
 <template>
-  <section class="search-bar-wrap poss">
+  <section @click="gotoSearch" class="search-bar-wrap poss">
     <section class="search-bar">
       <aside class="search-icon"></aside>
       <aside class="search-val">{{msg}}</aside>
@@ -11,9 +11,14 @@
 export default {
   data() {
     return {
-      msg: "T恤"
+      msg: "请输入搜索关键字"
     };
-  }
+  },
+  methods: {
+    gotoSearch(){
+      this.$router.push('search')
+    }
+  },
 };
 </script>
 <style scoped>

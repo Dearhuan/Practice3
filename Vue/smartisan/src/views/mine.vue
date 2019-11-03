@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Header2>{{msg}}</Header2>
+    <mt-header title="个人中心">
+      <router-link to="/" slot="left">
+        <mt-button icon="back" @click="$router.back(-1)"></mt-button>
+      </router-link>
+      <mt-button icon="more" slot="right"></mt-button>
+    </mt-header>
     <div>
       <section _ngcontent-c0 class="main-wrapper is-header-shown is-bottom-shown">
         <router-outlet _ngcontent-c0></router-outlet>
@@ -17,9 +22,9 @@
                   <div _ngcontent-c17 class="avatar">
                     <img
                       _ngcontent-c17
-                      src="//static.smartisanos.cn/account/asset/img/default-user-avatar.png"
+                      src="../assets/images/avatar.png"
                     />
-                  </div>登录/注册
+                  </div>{{msg}}
                 </div>
 
                 <ul _ngcontent-c17 class="common-box menu-list-parallel box-order">
@@ -159,22 +164,28 @@
 </template>
 
 <script>
-import Header2 from "../components/Header2.vue";
+// import Header2 from "../components/Header2.vue";
 import Tabbar from "../components/tabbar.vue";
 export default {
   data() {
     return {
-      msg: "个人中心"
+      msg: '登录/注册'
     };
   },
   components: {
-    Header2,
     Tabbar
   },
   methods: {
     mineToLogin() {
       this.$router.push("/login");
       console.log("goto login");
+    }
+  },
+  created: function(){
+    let isLogin = this.$store.getters.isLogin;
+    console.log('isLogin:',isLogin);
+    if(isLogin){
+      this.msg = JSON.parse(localStorage.getItem('username'));
     }
   }
 };
@@ -185,8 +196,11 @@ ol,
 ul {
   list-style: none;
 }
-.main-wrapper.is-header-shown[_ngcontent-c0] {
-  margin-top: 50px;
+header {
+  height: 3.2rem;
+  padding: 0 10px;
+  font-size: 18px;
+  line-height: 20px;
 }
 .main-wrapper.is-bottom-shown[_ngcontent-c0] {
   padding-bottom: 54px;
@@ -226,7 +240,7 @@ ul {
   margin-bottom: 0;
   border-bottom: 0;
   border-radius: 0.4rem 0.4rem 0 0;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #333;
   box-shadow: none;
 }
@@ -249,23 +263,14 @@ ul {
   .box-userinfo[_ngcontent-c17]
   .avatar[_ngcontent-c17]
   img[_ngcontent-c17] {
-  width: 2.66rem;
-  height: 2.66rem;
+  width: 2.96rem;
+  height: 2.96rem;
   border-radius: 50%;
 }
 .page-for-center[_ngcontent-c17] .box-order[_ngcontent-c17] {
   border-radius: 0 0 0.4rem 0.4rem;
 }
-.common-box[_ngcontent-c17] {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.4rem;
-  background: #fff;
-  margin-bottom: 0.7rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
-    0 18px 20px -10px rgba(0, 0, 0, 0.03), 0 18px 20px -10px rgba(0, 0, 0, 0.03),
-    0 10px 20px -10px rgba(0, 0, 0, 0.03);
-}
+
 .page-for-center[_ngcontent-c17] .box-order[_ngcontent-c17] a[_ngcontent-c17],
 .page-for-center[_ngcontent-c17] .box-order[_ngcontent-c17] li[_ngcontent-c17] {
   font-size: 0.5rem;
@@ -274,7 +279,7 @@ ul {
 .menu-list-parallel[_ngcontent-c17] li[_ngcontent-c17] {
   float: left;
   width: 25%;
-  height: 3rem;
+  height: 4rem;
   text-align: center;
 }
 .menu-list-parallel[_ngcontent-c17] li[_ngcontent-c17],
@@ -315,13 +320,13 @@ ul {
   color: #333;
 }
 .menu-list-vertical[_ngcontent-c17] li[_ngcontent-c17] {
-  height: 3rem;
-  line-height: 3rem;
+  height: 3.6rem;
+  line-height: 3.6rem;
 }
 .menu-list-parallel[_ngcontent-c17] li[_ngcontent-c17],
 .menu-list-vertical[_ngcontent-c17] li[_ngcontent-c17] {
   position: relative;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   box-sizing: border-box;
 }
 .menu-list-parallel[_ngcontent-c9]

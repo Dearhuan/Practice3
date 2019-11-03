@@ -33,7 +33,9 @@ const find = (col, query) => {
         // 关闭连接
         client.close();
     })
-}
+};
+
+
 // query: 筛选条件
 // query: 更改后的值
 const update = (col, query, query2) => {

@@ -2,6 +2,9 @@
   <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide>
+      <img src="../assets/images/banner4.png" alt />
+    </swiper-slide>
+    <swiper-slide>
       <img src="../assets/images/banner1.png" alt />
     </swiper-slide>
     <swiper-slide>
@@ -12,8 +15,8 @@
     </swiper-slide>
     <!-- Optional controls -->
     <div class="swiper-pagination" slot="pagination"></div>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
+    <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
+    <!-- <div class="swiper-button-next" slot="button-next"></div> -->
   </swiper>
 </template>
 
@@ -36,7 +39,7 @@ export default {
         autoplay: {
           delay: 2000,
           disableOnInteraction: false,
-          stopOnLastSlide:true
+          stopOnLastSlide: true
         },
         pagination: {
           el: ".swiper-pagination",
@@ -47,12 +50,8 @@ export default {
       }
     };
   },
-  computed: {
-
-  },
-  mounted() {
-  
-  },
+  computed: {},
+  mounted() {},
   components: {
     swiper,
     swiperSlide
@@ -67,9 +66,15 @@ export default {
   margin-bottom: 0.8rem;
   height: 11rem;
 }
-.swiper-slide img {
+
+.swiper-slide{
   width: 100%;
+}
+.swiper-slide img {
+  display: block;
+  margin: 0 auto;
+  width: 350px;
   height: 100%;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
 }
 </style>

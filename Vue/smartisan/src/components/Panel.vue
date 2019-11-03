@@ -7,6 +7,7 @@
       <section
         v-for="(item, index) in goods"
         :key="index"
+        @click="gotoDetail(item)"
         class="sku-item-normal-box flow-item guess-like-item"
       >
         <figure class="item-cover">
@@ -23,7 +24,8 @@
             <span class="yuan">¥</span>
             <span v-text="item.originalPrice"></span>
             <span v-if="item.discountPrice>0" class="orignal">
-              <span v-if="item.discountPrice>0" class="yuan">¥</span>{{item.discountPrice}}
+              <span v-if="item.discountPrice>0" class="yuan">¥</span>
+              {{item.discountPrice}}
             </span>
           </aside>
           <aside v-if="item.promotionList.length>0" class="item-promotion-tags">
@@ -32,6 +34,28 @@
         </article>
       </section>
     </aside>
+
+    <div v-show="no_data" class="infinite-loading-container">
+      <div class="infinite-status-prompt" style="display: none;">
+        <div>
+          <img src="../assets/images/loading.png" alt="loading" class="loading" />
+        </div>
+      </div>
+      <div class="infinite-status-prompt" style="display: none;">
+        <div></div>
+      </div>
+      <div class="infinite-status-prompt" style>
+        <div class="no-more">没有更多了</div>
+      </div>
+      <div
+        class="infinite-status-prompt"
+        style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;"
+      >
+        Opps, something went wrong :(
+        <br />
+        <button class="btn-try-infinite">Retry</button>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -42,20 +66,78 @@ export default {
   data() {
     return {
       title: "猜你喜欢",
-      goods: []
+      goods: [],
+      current_index: 0,
+      list_param: { page: 1, start: 0 },
+      no_data: false,
+      has_log: 0
     };
   },
+  created() {
+    /* this.axios({
+      method: "post",
+      url: "http://localhost/goods",
+      data: this.list_param
+    }).then(data => {
+      this.goods = data.data.goods;
+      this.list_param.page += 1;
+    }); */
+    window.addEventListener("scroll", this.onScroll);
+  },
   methods: {
-    getGoods() {
-      let _self = this;
-      axios.get("http://localhost:3000/goods").then(data => {
-        console.log(data.data);
-        _self.goods = data.data.goods;
+    onScroll() {
+      this.has_log = 1;
+      let innerHeight = document.querySelector("#app").clientHeight;
+      let outerHeight = document.documentElement.clientHeight;
+      let scrollTop = document.documentElement.scrollTop;
+      /*  console.log(
+        innerHeight,
+        outerHeight,
+        scrollTop,
+        innerHeight - 49,
+        outerHeight + scrollTop
+      ); */
+      if (outerHeight + scrollTop == innerHeight - 49) {
+        if (this.no_data === true) {
+          this.has_log = 2;
+          return false;
+        }
+        this.axios({
+          method: "post",
+          url: "http://localhost/goods",
+          data: this.list_param
+        }).then(data => {
+          console.log(data);
+          if (data.data.arr.length > 0) {
+            this.goods = [...this.goods, ...data.data.arr];
+            this.list_param.page = this.list_param.page + 1;
+            this.list_param.start = this.list_param.start + 10;
+            this.has_log = 0;
+          } else {
+            this.has_log = 2;
+            this.no_data = true;
+            console.log("no_data");
+          }
+        });
+      }
+    },
+
+    gotoDetail(item) {
+      const skuId = item.skuId;
+      console.log("gotoDetail", skuId);
+      this.$router.push({
+        path: "detail",
+        query: {
+          skuId
+        }
       });
     }
   },
   mounted() {
-    this.getGoods();
+    // this.getGoods();
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.onScroll);
   }
 };
 </script>
@@ -66,7 +148,8 @@ export default {
 }
 .home-box {
   position: relative;
-  /* padding-top: 0.7rem; */
+  margin-top: 0.8rem;
+  margin-bottom: 3.4rem;
 }
 .home-box .headline-wrap {
   position: relative;
@@ -77,14 +160,6 @@ export default {
   font-size: 1rem;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.8);
-}
-.guesslike-wrap {
-  width: calc(100% - 1.2rem);
-  /* margin: 0 auto; */
-  margin-bottom: 3.2rem;
-  height: 100%;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 .common-flow-layout {
   width: 100%;
@@ -107,6 +182,15 @@ export default {
   flex: 0 0 calc(50% - 0.15rem);
   margin-bottom: 0.8rem;
 }
+.guesslike-wrap {
+  width: calc(100% - 1.2rem);
+  margin: 0 auto;
+  /* margin-bottom: 3.2rem; */
+  height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 .sku-item-normal-box {
   position: relative;
   width: 100%;
@@ -176,11 +260,11 @@ img {
   color: #d44d44;
 }
 .item-bottom-info .item-price .orignal {
-    position: relative;
-    margin-left: 5px;
-    font-size: .5rem;
-    color: #ccc;
-    font-weight: 400;
+  position: relative;
+  margin-left: 5px;
+  font-size: 0.5rem;
+  color: #ccc;
+  font-weight: 400;
 }
 .guesslike-wrap .guess-like-item .item-price .yuan {
   font-size: 0.55rem;
@@ -203,5 +287,32 @@ img {
   background: #f6ebea;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.infinite-loading-container {
+  clear: both;
+  text-align: center;
+}
+.loading {
+  margin-top: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: infiniteRound-data-v-2bda5b34 0.8s linear 0s infinite reverse;
+}
+.no-more {
+  line-height: 3.4rem;
+  opacity: 0.7;
+  color: #666;
+}
+.btn-try-infinite {
+  margin-top: 5px;
+  padding: 5px 10px;
+  color: #999;
+  font-size: 14px;
+  line-height: 1;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
 }
 </style>

@@ -1,6 +1,6 @@
-# juejin
+# Smartisan
 
-> A Vue.js project
+> This is a "锤子" app written by Vue. The author is He Huan (何欢).
 
 ## Build Setup
 
