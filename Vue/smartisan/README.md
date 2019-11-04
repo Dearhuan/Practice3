@@ -1,6 +1,8 @@
 # Smartisan
 
-> This is a "锤子" app written by Vue. The author is He Huan (何欢).
+> This is a "锤子" App written by Vue. The author is He Huan (何欢).
+> 该项目暂时部署在腾讯云服务器上，IP地址为：http://193.112.112.233/
+> 通过Hbuilder打包的App名称为Smartisan
 
 ## Build Setup
 

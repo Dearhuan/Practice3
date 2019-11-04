@@ -8,7 +8,13 @@ var {find} = require('../libs/db');
   res.json({goods});
 }); */
 
-router.post('/', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
+  // res.send('respond with a resource');
+  let goods =  await find('goodlist');
+  res.json({goods});
+});
+
+/* router.post('/', async function(req, res, next) {
   // res.send('respond with a resource');
   let page = req.body.page;
   let start = req.body.start;
@@ -21,6 +27,6 @@ router.post('/', async function(req, res, next) {
   let arr =  goods.slice(start,end);     //返回指定数量的数据，一次十条(1-10.11-20)
   console.log(arr);
   res.json({arr});
-});
+}); */
 
 module.exports = router;

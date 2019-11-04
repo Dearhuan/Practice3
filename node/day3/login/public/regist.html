@@ -43,7 +43,7 @@
         }) => {
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: 'http://localhost:3000/regist',
+                    url: 'http://localhost:3001/regist',
                     type: 'POST',
                     data: {
                         username,
@@ -75,7 +75,7 @@
                     break;
                 case true:
                     //注册成功，跳转登录页
-                    location.href = 'http://localhost:3000/login.html';
+                    location.href = 'http://localhost:3001/login.html';
             }
         })
     </script>

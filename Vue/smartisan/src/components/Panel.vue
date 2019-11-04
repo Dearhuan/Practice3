@@ -73,7 +73,8 @@ export default {
       has_log: 0
     };
   },
-  created() {
+  created(){
+    this.getGoods();
     /* this.axios({
       method: "post",
       url: "http://localhost/goods",
@@ -82,45 +83,52 @@ export default {
       this.goods = data.data.goods;
       this.list_param.page += 1;
     }); */
-    window.addEventListener("scroll", this.onScroll);
+    // window.addEventListener("scroll", this.onScroll);
   },
   methods: {
-    onScroll() {
-      this.has_log = 1;
-      let innerHeight = document.querySelector("#app").clientHeight;
-      let outerHeight = document.documentElement.clientHeight;
-      let scrollTop = document.documentElement.scrollTop;
-      /*  console.log(
-        innerHeight,
-        outerHeight,
-        scrollTop,
-        innerHeight - 49,
-        outerHeight + scrollTop
-      ); */
-      if (outerHeight + scrollTop == innerHeight - 49) {
-        if (this.no_data === true) {
-          this.has_log = 2;
-          return false;
-        }
-        this.axios({
-          method: "post",
-          url: "http://localhost/goods",
-          data: this.list_param
-        }).then(data => {
-          console.log(data);
-          if (data.data.arr.length > 0) {
-            this.goods = [...this.goods, ...data.data.arr];
-            this.list_param.page = this.list_param.page + 1;
-            this.list_param.start = this.list_param.start + 10;
-            this.has_log = 0;
-          } else {
-            this.has_log = 2;
-            this.no_data = true;
-            console.log("no_data");
-          }
-        });
-      }
+    getGoods() {
+      let _self = this;
+      axios.get("http://localhost/goods").then(data => {
+        console.log(data);
+        _self.goods = data.data.goods;
+      });
     },
+    // onScroll() {
+    //   this.has_log = 1;
+    //   let innerHeight = document.querySelector("#app").clientHeight;
+    //   let outerHeight = document.documentElement.clientHeight;
+    //   let scrollTop = document.documentElement.scrollTop;
+    //   /*  console.log(
+    //     innerHeight,
+    //     outerHeight,
+    //     scrollTop,
+    //     innerHeight - 49,
+    //     outerHeight + scrollTop
+    //   ); */
+    //   if (outerHeight + scrollTop == innerHeight - 49) {
+    //     if (this.no_data === true) {
+    //       this.has_log = 2;
+    //       return false;
+    //     }
+    //     this.axios({
+    //       method: "post",
+    //       url: "http://localhost/goods",
+    //       data: this.list_param
+    //     }).then(data => {
+    //       console.log(data);
+    //       if (data.data.arr.length > 0) {
+    //         this.goods = [...this.goods, ...data.data.arr];
+    //         this.list_param.page = this.list_param.page + 1;
+    //         this.list_param.start = this.list_param.start + 10;
+    //         this.has_log = 0;
+    //       } else {
+    //         this.has_log = 2;
+    //         this.no_data = true;
+    //         console.log("no_data");
+    //       }
+    //     });
+    //   }
+    // }
 
     gotoDetail(item) {
       const skuId = item.skuId;
@@ -136,9 +144,9 @@ export default {
   mounted() {
     // this.getGoods();
   },
-  destroyed() {
+ /*  destroyed() {
     window.removeEventListener("scroll", this.onScroll);
-  }
+  } */
 };
 </script>
 
