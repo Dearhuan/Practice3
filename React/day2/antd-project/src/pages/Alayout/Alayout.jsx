@@ -1,15 +1,51 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import Aheader from '../../components/Aheader/Aheader';
-import Atable from '../../components/Atable/Atable';
-import Banner from '../../components/Banner/Banner';
-import Dayli from '../../components/Dayli/Dayli';
+import Aheader from '../../components/Aheader/Aheader.jsx';
+import Aupload from '../../components/Aupload/Aupload';
+import Complaint from '../../components/Complaint/Complaint';
+import Problem from '../../components/Problem/Problem';
+import Weekly from '../../components/Weekly/Weekly';
+import Exam from '../../components/Exam/Exam';
+import Evaluate from '../../components/Evaluate/Evaluate';
+import Inquiry from '../../components/Inquiry/Inquiry';
+import Leave from '../../components/Leave/Leave';
+import Discipline from '../../components/Discipline/Discipline';
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 export default class Alayout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      routes: [{
+        url: '/complaint',
+        title: '匿名投诉'
+      }, {
+        url: '/problem',
+        title: '技术问题'
+      }, {
+        url: '/upload',
+        title: '项目上传'
+      }, {
+        url: '/stuvip',
+        title: 'VIP'
+      }, {
+        url: '/weekly',
+        title: '学员周报'
+      }, {
+        url: '/exam',
+        title: '参加考试'
+      }, {
+        url: '/evaluate',
+        title: '学员评价'
+      }, {
+        url: '/inquiry',
+        title: '教学测评'
+      }]
+    }
+  }
   render() {
     return (
       <div>
@@ -29,58 +65,42 @@ export default class Alayout extends React.Component {
                     title={
                       <span>
                         <Icon type="user" />
-                        subnav 1
+                        学员后台
               </span>
                     }
                   >
-                    <Menu.Item key="1">
-                      <Link to='/option1'>option1</Link>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                      <Link to='/option2'>option2</Link>
-                      </Menu.Item>
-                    <Menu.Item key="3">
-                    <Link to='/option3'>option3</Link>
-                    </Menu.Item>
-                    <Menu.Item key="4">
-                    <Link to='/option4'>option4</Link>
-                    </Menu.Item>
+                    {
+                      this.state.routes.map((item, index) => {
+                        return (
+                          <Menu.Item key={index + 1}>
+                            <Link to={item.url}>{item.title}</Link>
+                          </Menu.Item>
+                        )
+                      })
+                    }
                   </SubMenu>
                   <SubMenu
                     key="sub2"
                     title={
                       <span>
                         <Icon type="laptop" />
-                        subnav 2
+                        学员考勤
               </span>
                     }
                   >
-                    <Menu.Item key="5">option5</Menu.Item>
-                    <Menu.Item key="6">option6</Menu.Item>
-                    <Menu.Item key="7">option7</Menu.Item>
-                    <Menu.Item key="8">option8</Menu.Item>
-                  </SubMenu>
-                  <SubMenu
-                    key="sub3"
-                    title={
-                      <span>
-                        <Icon type="notification" />
-                        subnav 3
-              </span>
-                    }
-                  >
-                    <Menu.Item key="9">option9</Menu.Item>
-                    <Menu.Item key="10">option10</Menu.Item>
-                    <Menu.Item key="11">option11</Menu.Item>
-                    <Menu.Item key="12">option12</Menu.Item>
+                    <Menu.Item key="9">
+                      <Link to="/leave">学员请假</Link>
+                    </Menu.Item>
+                    <Menu.Item key="10">
+                      <Link to="/discipline">学员违纪</Link>
+                    </Menu.Item>
                   </SubMenu>
                 </Menu>
               </Sider>
               <Layout style={{ padding: '0 24px 24px' }}>
                 <Breadcrumb style={{ margin: '16px 0' }}>
-                  <Breadcrumb.Item>Home</Breadcrumb.Item>
+                  <Breadcrumb.Item>学员后台</Breadcrumb.Item>
                   <Breadcrumb.Item>List</Breadcrumb.Item>
-                  <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb>
                 <Content
                   style={{
@@ -90,11 +110,19 @@ export default class Alayout extends React.Component {
                     minHeight: 280,
                   }}
                 >
-                  <Route exact path='/' component={Atable}></Route>
-                  <Route path='/option1' component={Atable}></Route>
-                  <Route path='/option2' component={Banner}></Route>
-                  <Route path='/option3' component={Dayli}></Route>
-                  <Route path='/option4' component={Option4}></Route>
+                  <Switch>
+                    <Route exact path='/' component={Complaint}></Route>
+                    <Route path='/upload' component={Aupload}></Route>
+                    <Route path='/complaint' component={Complaint}></Route>
+                    <Route path='/problem' component={Problem}></Route>
+                    <Route path='/stuvip' component={Problem}></Route>
+                    <Route path='/weekly' component={Weekly}></Route>
+                    <Route path='/exam' component={Exam}></Route>
+                    <Route path='/evaluate' component={Evaluate}></Route>
+                    <Route path='/inquiry' component={Inquiry}></Route>
+                    <Route path='/leave' component={Leave}></Route>
+                    <Route path='/discipline' component={Discipline}></Route>
+                  </Switch>
                 </Content>
               </Layout>
             </Router>
@@ -105,34 +133,3 @@ export default class Alayout extends React.Component {
   }
 }
 
-class Option1 extends Component{
-  render(){
-    return(
-      <h1>hello option1</h1>
-    )
-  }
-}
-
-// class Option2 extends Component{
-//   render(){
-//     return(
-//       <h1>hello option2</h1>
-//     )
-//   }
-// }
-
-// class Option3 extends Component{
-//   render(){
-//     return(
-//       <h1>hello option3</h1>
-//     )
-//   }
-// }
-
-class Option4 extends Component{
-  render(){
-    return(
-      <h1>hello option4</h1>
-    )
-  }
-}

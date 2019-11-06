@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Divider, Tag } from 'antd';
 
-export default class Alayout extends React.Component {
+export default class Atable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -5,11 +5,28 @@ import './Banner.css';
 export default class Banner extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      banners: [{
+        title: 'banner1'
+      },
+      {
+        title: 'banner2'
+      },
+      {
+        title: 'banner3'
+      },
+      {
+        title: 'banner4'
+      },
+      {
+        title: 'banner5'
+      },]
+    }
   }
   render() {
     return (
       <Carousel autoplay>
-        <div>
+        {/* <div>
           <h3>1</h3>
         </div>
         <div>
@@ -20,7 +37,16 @@ export default class Banner extends React.Component {
         </div>
         <div>
           <h3>4</h3>
-        </div>
+        </div> */}
+        {
+          this.state.banners.map((item, index) => {
+            return (
+              <div key={index+1}>
+                <h3>{item.title}</h3>
+              </div>
+            )
+          })
+        }
       </Carousel>
     )
   }

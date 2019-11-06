@@ -1,0 +1,82 @@
+.navbar {
+  height: 50px;
+  background: #428bca;
+}
+.navbar {
+  margin-left: 0;
+  margin-right: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 45px;
+  position: relative;
+  background: #438eb9;
+}
+.navbar::before, .navbar::after {
+  display: table;
+  content: " ";
+}
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.navbar-container, .navbar .navbar-brand {
+  padding: 0;
+  margin: 0;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-left {
+  float: left!important;
+}
+.navbar .navbar-brand {
+  color: #fff;
+  font-size: 24px;
+  text-shadow: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+small {
+  font-size: 85%;
+}
+img {
+  vertical-align: middle;
+}
+img {
+  border: 0;
+}
+.navbar-header::after {
+  clear: both;
+}
+.navbar .navbar-header {
+  /* margin: 0!important; */
+  margin: -20px;
+}
+.pull-right {
+  float: right;
+}
+.pull-right {
+  float: right!important;
+}
+
+.ace-nav {
+  height: 100%;
+  /* margin: 0!important; */
+}
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+ul, ol {
+  margin: 0 0 10px 25px;
+  padding: 0;
+}
