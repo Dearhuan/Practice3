@@ -20,28 +20,28 @@ export default class Alayout extends React.Component {
     super(props)
     this.state = {
       routes: [{
-        url: '/complaint',
+        url: '/index/complaint',
         title: '匿名投诉'
       }, {
-        url: '/problem',
+        url: '/index/problem',
         title: '技术问题'
       }, {
-        url: '/upload',
+        url: '/index/upload',
         title: '项目上传'
       }, {
-        url: '/stuvip',
+        url: '/index/stuvip',
         title: 'VIP'
       }, {
-        url: '/weekly',
+        url: '/index/weekly',
         title: '学员周报'
       }, {
-        url: '/exam',
+        url: '/index/exam',
         title: '参加考试'
       }, {
-        url: '/evaluate',
+        url: '/index/evaluate',
         title: '学员评价'
       }, {
-        url: '/inquiry',
+        url: '/index/inquiry',
         title: '教学测评'
       }]
     }
@@ -89,10 +89,10 @@ export default class Alayout extends React.Component {
                     }
                   >
                     <Menu.Item key="9">
-                      <Link to="/leave">学员请假</Link>
+                      <Link to="/index/leave">学员请假</Link>
                     </Menu.Item>
                     <Menu.Item key="10">
-                      <Link to="/discipline">学员违纪</Link>
+                      <Link to="/index/discipline">学员违纪</Link>
                     </Menu.Item>
                   </SubMenu>
                 </Menu>
@@ -111,17 +111,17 @@ export default class Alayout extends React.Component {
                   }}
                 >
                   <Switch>
-                    <Route exact path='/' component={Complaint}></Route>
-                    <Route path='/upload' component={Aupload}></Route>
-                    <Route path='/complaint' component={Complaint}></Route>
-                    <Route path='/problem' component={Problem}></Route>
-                    <Route path='/stuvip' component={Problem}></Route>
-                    <Route path='/weekly' component={Weekly}></Route>
-                    <Route path='/exam' component={Exam}></Route>
-                    <Route path='/evaluate' component={Evaluate}></Route>
-                    <Route path='/inquiry' component={Inquiry}></Route>
-                    <Route path='/leave' component={Leave}></Route>
-                    <Route path='/discipline' component={Discipline}></Route>
+                    <Route exact path='/index' component={Complaint}></Route>
+                    <Route path='/index/upload' component={Aupload}></Route>
+                    <Route path='/index/complaint' component={Complaint}></Route>
+                    <Route path='/index/problem' component={Problem}></Route>
+                    <Route path='/index/stuvip' component={Problem}></Route>
+                    <Route path='/index/weekly' component={Weekly}></Route>
+                    <Route path='/index/exam' component={Exam}></Route>
+                    <Route path='/index/evaluate' component={Evaluate}></Route>
+                    <Route path='/index/inquiry' component={Inquiry}></Route>
+                    <Route path='/index/leave' component={Leave}></Route>
+                    <Route path='/index/discipline' component={Discipline}></Route>
                   </Switch>
                 </Content>
               </Layout>

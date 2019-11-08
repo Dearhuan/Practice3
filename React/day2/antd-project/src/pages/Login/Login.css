@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #6fb3e0;
+}
+
+#container {
+  width: 375px;
+  height: 308px;
+  margin: 100px auto;
+  background: #394557;
+  padding: 6px;
+}
+
+.b-box {
+  background: #f7f7f7;
+}
+
+.top {
+  padding: 16px 36px 36px;
+  background: #f7f7f7;
+}
+
+.top h1 {
+  text-align: center;
+  font-size: 27px;
+  line-height: 28px;
+  margin-bottom: 16px;
+  margin-top: 18px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+  color: #478fca !important;
+}
+
+.top Input {
+  margin-bottom: 11px;
+}
+
+.top Button {
+  border-color: #428bca !important;
+  border-width: 4px;
+  font-size: 13px;
+  padding: 18px 9px;
+  line-height: 0.2;
+  display: inline-block;
+  color: #FFF !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25) !important;
+  background-image: none !important;
+  border: 5px solid #FFF;
+  border-radius: 0;
+  box-shadow: none !important;
+  -webkit-transition: all ease .15s;
+  transition: all ease .15s;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+.top .inputbox,.top .submit{
+  position: relative;
+}
+.top .anticon-user,.top .anticon-lock{
+  position: absolute;
+  right: 7px;
+  top: 8px;
+}
+.top .anticon-key{
+  position: absolute;
+  left: 110px;
+  top: 17px;
+  color: white;
+}
+
+.bot {
+  background: #5090c1;
+  border-top: 2px solid #597597;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);
+  padding: 9px 0 11px;
+}
