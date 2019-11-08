@@ -10,7 +10,11 @@ body {
 #container {
   width: 375px;
   height: 308px;
-  margin: 100px auto;
+  /* margin: 100px auto; */
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
   background: #394557;
   padding: 6px;
 }
