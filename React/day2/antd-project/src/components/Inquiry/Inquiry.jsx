@@ -49,7 +49,6 @@ export default class Inquiry extends React.Component {
     return (
       <div>
         <Table columns = { this.state.columns } dataSource = { this.state.data } />
-       
       </div>
     )
   }
