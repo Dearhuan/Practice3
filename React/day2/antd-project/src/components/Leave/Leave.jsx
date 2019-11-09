@@ -84,7 +84,7 @@ export default class Leave extends React.Component {
         <div>  
           <RangePicker renderExtraFooter={() => 'extra footer'} showTime />
         </div>
-        <div>
+        <div className="ibtn">
           <Button type="primary" size={this.state.size}>
             提交
         </Button>

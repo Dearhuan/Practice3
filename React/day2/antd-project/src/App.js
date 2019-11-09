@@ -1,9 +1,11 @@
 import React from 'react';
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+
 import './App.css';
 import Alayout from './pages/Alayout/Alayout';
 import Notfound from './pages/404/404';
 import Login from './pages/Login/Login';
+
 
 // function App() {
 //   return (
@@ -13,9 +15,10 @@ import Login from './pages/Login/Login';
 //   );
 // }
 
-class App extends React.Component{
-  render(){
-    return(
+class App extends React.Component {
+  render() {
+    return (
+
       <Router>
         <Switch>
           <Route path='/' component={Login} exact></Route>
@@ -23,6 +26,7 @@ class App extends React.Component{
           <Route component={Notfound}></Route>
         </Switch>
       </Router>
+
     )
   }
 }

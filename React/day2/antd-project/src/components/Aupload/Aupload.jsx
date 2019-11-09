@@ -39,10 +39,12 @@ export default class Aupload extends React.Component {
             band files
     </p>
         </Dragger>
-        <Button type="primary" size={this.state.size}>
-          提交
-      </Button>
-        <Button size={this.state.size}>返回</Button>
+        <div className="ibtn">
+          <Button type="primary" size={this.state.size}>
+            提交
+        </Button>
+          <Button size={this.state.size}>返回</Button>
+        </div>
       </div>
     )
   }

@@ -16,7 +16,7 @@ export default class Problem extends React.Component {
           render: text => <a>{text}</a>,
         },
         {
-          title: '问题理由',
+          title: '申请理由',
           dataIndex: 'reason',
           key: 'reason',
         },
@@ -45,9 +45,9 @@ export default class Problem extends React.Component {
   render() {
     return (
       <div>
-        <Input placeholder="hello" disabled />
+        <Input placeholder="Basic usage" />
         <TextArea rows={4}
-          placeholder="请输入技术内容"
+          placeholder="请输入申请理由"
         />
         <div className="ibtn">
           <Button type="primary" size={this.state.size}>

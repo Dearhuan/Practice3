@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Aheader from '../../components/Aheader/Aheader.jsx';
 import Aupload from '../../components/Aupload/Aupload';
@@ -11,6 +11,7 @@ import Evaluate from '../../components/Evaluate/Evaluate';
 import Inquiry from '../../components/Inquiry/Inquiry';
 import Leave from '../../components/Leave/Leave';
 import Discipline from '../../components/Discipline/Discipline';
+import Vip from '../../components/Vip/Vip';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -115,7 +116,7 @@ export default class Alayout extends React.Component {
                     <Route path='/index/upload' component={Aupload}></Route>
                     <Route path='/index/complaint' component={Complaint}></Route>
                     <Route path='/index/problem' component={Problem}></Route>
-                    <Route path='/index/stuvip' component={Problem}></Route>
+                    <Route path='/index/stuvip' component={Vip}></Route>
                     <Route path='/index/weekly' component={Weekly}></Route>
                     <Route path='/index/exam' component={Exam}></Route>
                     <Route path='/index/evaluate' component={Evaluate}></Route>
@@ -123,6 +124,7 @@ export default class Alayout extends React.Component {
                     <Route path='/index/leave' component={Leave}></Route>
                     <Route path='/index/discipline' component={Discipline}></Route>
                   </Switch>
+                 
                 </Content>
               </Layout>
             </Router>

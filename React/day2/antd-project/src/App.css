@@ -1,1 +1,10 @@
 @import '~antd/dist/antd.css';
+.ibtn{
+  text-align: center;
+}
+.ant-input{
+  margin: 10px 0;
+}
+.ant-btn{
+  margin: 10px 30px;
+}

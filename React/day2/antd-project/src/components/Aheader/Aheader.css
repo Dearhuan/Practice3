@@ -57,26 +57,35 @@ img {
 }
 .navbar .navbar-header {
   /* margin: 0!important; */
-  margin: -20px;
+  margin-top: -20px;
 }
-.pull-right {
+.right-box{
   float: right;
+  position: relative;
+  margin-top: -20px;
 }
-.pull-right {
-  float: right!important;
+.user{
+  min-width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
 }
-
-.ace-nav {
-  height: 100%;
-  /* margin: 0!important; */
+.user span{
+  margin-right: 8px;
 }
-.nav {
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
+#logout{
+  position: absolute;
+  top: 49px;
+  background: #659bcc;
 }
-
-ul, ol {
-  margin: 0 0 10px 25px;
-  padding: 0;
+.logout{
+  width: 100px;
+  height: 50px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+}
+#logout span{
+  margin-left: 5px;
 }
