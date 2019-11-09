@@ -45,8 +45,8 @@ export default class Problem extends React.Component {
   render() {
     return (
       <div>
-        <Input placeholder="hello" disabled />
-        <TextArea rows={4}
+        学生姓名：<Input placeholder="hello" disabled />
+        问题内容：<TextArea rows={4}
           placeholder="请输入技术内容"
         />
         <div className="ibtn">

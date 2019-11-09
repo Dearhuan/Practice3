@@ -77,12 +77,12 @@ export default class Leave extends React.Component {
   render() {
     return (
       <div>
-        <Input placeholder="学生姓名" />
-        <TextArea rows={4}
+        学生姓名：<Input placeholder="学生姓名" />
+        请假理由：<TextArea rows={4}
           placeholder="请输入请假理由"
         />
         <div>  
-          <RangePicker renderExtraFooter={() => 'extra footer'} showTime />
+        请假时间：<RangePicker renderExtraFooter={() => 'extra footer'} showTime />
         </div>
         <div className="ibtn">
           <Button type="primary" size={this.state.size}>

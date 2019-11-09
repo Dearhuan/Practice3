@@ -29,7 +29,7 @@ export default class Aupload extends React.Component {
   render() {
     return (
       <div>
-        <Dragger {...this.state.props}>
+        项目文件：<Dragger {...this.state.props}>
           <p className="ant-upload-drag-icon">
             <Icon type="inbox" />
           </p>

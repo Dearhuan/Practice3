@@ -7,9 +7,9 @@ export default () => {
   let size = 'large';
   return (
     <div>
-      <Input placeholder="学生姓名" />
-      <Input placeholder="请填写周报标题" />
-      <TextArea rows={4}
+      学员姓名：<Input placeholder="学生姓名" />
+      周报标题：<Input placeholder="请填写周报标题" />
+      周报内容：<TextArea rows={4}
         placeholder="请输入周报理由"
       />
       <div className="ibtn">

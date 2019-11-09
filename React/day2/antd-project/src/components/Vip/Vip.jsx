@@ -45,8 +45,8 @@ export default class Problem extends React.Component {
   render() {
     return (
       <div>
-        <Input placeholder="Basic usage" />
-        <TextArea rows={4}
+        学生姓名：<Input placeholder="Basic usage" />
+        申请理由：<TextArea rows={4}
           placeholder="请输入申请理由"
         />
         <div className="ibtn">

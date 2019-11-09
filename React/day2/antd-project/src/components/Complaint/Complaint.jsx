@@ -41,6 +41,13 @@ export default class Demo extends React.Component {
           reason: 'xxxxxxxxxxxx',
           ctime: '2019-11-10',
           cancel: '否',
+        },
+        {
+          key: '1',
+          name: 'hello',
+          reason: 'xxxxxxxxxxxx',
+          ctime: '2019-11-10',
+          cancel: '否',
         }
       ]
     }
@@ -61,7 +68,7 @@ export default class Demo extends React.Component {
     return (
       <div>
         <div style={{ margin: '24px 0' }} />
-        <TextArea
+        投诉内容：<TextArea
           value={value}
           onChange={this.onChange}
           placeholder="本投诉是匿名投诉，不会暴露您的信息"
