@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Aheader from '../../components/Aheader/Aheader.jsx';

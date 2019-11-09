@@ -67,7 +67,7 @@ export default class Demo extends React.Component {
 
     return (
       <div>
-        <div style={{ margin: '24px 0' }} />
+        <div style={{ margin: '0px 0' }} />
         投诉内容：<TextArea
           value={value}
           onChange={this.onChange}
