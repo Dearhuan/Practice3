@@ -52,33 +52,28 @@ export default class Demo extends React.Component {
       ]
     }
   }
-
-  onChange = ({ target: { value } }) => {
-    this.setState({ value });
-  };
-
-  handleSizeChange = e => {
-    this.setState({ size: e.target.value });
-  };
+  handleInput(value){
+    this.setState({
+      value
+    })
+    console.log(value)
+  }
 
   render() {
-    const { value } = this.state;
-    const { size } = this.state;
-
     return (
       <div>
         <div style={{ margin: '0px 0' }} />
         投诉内容：<TextArea
-          value={value}
-          onChange={this.onChange}
+          value={this.state.value}
+          onChange={e => {this.handleInput(e.target.value)}}
           placeholder="本投诉是匿名投诉，不会暴露您的信息"
           autoSize={{ minRows: 8, maxRows: 16 }}
         />
         <div className="ibtn">
-          <Button type="primary" size={size}>
+          <Button type="primary" size={this.state.size}>
             提交
         </Button>
-          <Button size={size}>返回</Button>
+          <Button size={this.state.size}>返回</Button>
         </div>
 
         <Table columns={this.state.columns} dataSource={this.state.data} />

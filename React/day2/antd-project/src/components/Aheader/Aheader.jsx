@@ -26,7 +26,7 @@ export default class Aheader extends React.Component {
   }
   render() {
     return (
-      <div className="navbar navbar-default" id="navbar">>
+      <div className="navbar navbar-default" id="navbar">
       	<div className="navbar-container" id="navbar-container">
           <div className="navbar-header pull-left">
             <a href="/#index" className="navbar-brand">

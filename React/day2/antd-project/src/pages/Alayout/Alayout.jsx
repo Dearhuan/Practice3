@@ -14,12 +14,14 @@ import Discipline from '../../components/Discipline/Discipline';
 import Vip from '../../components/Vip/Vip';
 
 const { SubMenu } = Menu;
-const { Content, Sider } = Layout;
+// const { Content, Sider } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 export default class Alayout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      collapsed: false,
       routes: [{
         url: '/index/complaint',
         title: '匿名投诉'
@@ -47,6 +49,10 @@ export default class Alayout extends React.Component {
       }]
     }
   }
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  }
   render() {
     return (
       <div>
@@ -54,20 +60,16 @@ export default class Alayout extends React.Component {
           <Aheader />
           <Layout>
             <Router>
-              <Sider width={200} style={{ background: '#fff' }}>
-                <Menu
-                  mode="inline"
-                  defaultSelectedKeys={['1']}
-                  defaultOpenKeys={['sub1']}
-                  style={{ height: '100%', borderRight: 0 }}
-                >
+              <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+                {/* <div className="logo" /> */}
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                   <SubMenu
                     key="sub1"
                     title={
                       <span>
                         <Icon type="user" />
-                        学员后台
-              </span>
+                        <span>学员后台</span>
+                      </span>
                     }
                   >
                     {
@@ -84,15 +86,15 @@ export default class Alayout extends React.Component {
                     key="sub2"
                     title={
                       <span>
-                        <Icon type="laptop" />
-                        学员考勤
-              </span>
+                        <Icon type="team" />
+                        <span>学员考勤</span>
+                      </span>
                     }
                   >
-                    <Menu.Item key="9">
+                    <Menu.Item key="6">
                       <Link to="/index/leave">学员请假</Link>
                     </Menu.Item>
-                    <Menu.Item key="10">
+                    <Menu.Item key="8">
                       <Link to="/index/discipline">学员违纪</Link>
                     </Menu.Item>
                   </SubMenu>
@@ -124,7 +126,7 @@ export default class Alayout extends React.Component {
                     <Route path='/index/leave' component={Leave}></Route>
                     <Route path='/index/discipline' component={Discipline}></Route>
                   </Switch>
-                 
+
                 </Content>
               </Layout>
             </Router>

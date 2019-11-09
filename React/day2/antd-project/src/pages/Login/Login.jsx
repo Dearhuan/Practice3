@@ -1,8 +1,11 @@
 import React from 'react';
 import { Input, Button, Icon } from 'antd';
 import './Login.css';
+import { connect } from 'react-redux';
 
-class Login extends React.Component {
+export default connect(state => {
+  return state;
+})(class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,27 +16,29 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div id="container">
-        <div className="b-box">
-          <div className="login">
-            <div className="top">
-              <h1>学员后台系统</h1>
-              <div className="inputbox">
-                <Input value={this.state.username} onChange={e => { this.handleUser(e.target.value) }} placeholder="身份证号码/学号" />
-                <Icon type="user" />
-              </div>
-              <div className="inputbox">
-                <Input value={this.state.password} onChange={e => { this.handlePass(e.target.value) }} placeholder="密码" />
-                <Icon type="lock" />
-              </div>
-              <div className="submit"><Button onClick={this.gotoIndex.bind(this, '/index')} type="primary" size={this.state.size}>
-                提交
+      <div id="box">
+        <div id="container">
+          <div className="b-box">
+            <div className="login">
+              <div className="top">
+                <h1>学员后台系统</h1>
+                <div className="inputbox">
+                  <Input value={this.state.username} onChange={e => { this.handleUser(e.target.value) }} placeholder="身份证号码/学号:admin" />
+                  <Icon type="user" />
+                </div>
+                <div className="inputbox">
+                  <Input value={this.state.password} onChange={e => { this.handlePass(e.target.value) }} placeholder="密码:admin" />
+                  <Icon type="lock" />
+                </div>
+                <div className="submit"><Button onClick={this.gotoIndex.bind(this, '/index')} type="primary" size={this.state.size}>
+                  提交
                 </Button>
-                <Icon type="key" />
+                  <Icon type="key" />
+                </div>
               </div>
+              <div className="bot">
+                学习总结入口
             </div>
-            <div className="bot">
-              学习总结入口
             </div>
           </div>
         </div>
@@ -62,13 +67,17 @@ class Login extends React.Component {
       alert('请输入用户名和密码');
     } else if (username && password) {
       if (username == 'admin' && password == 'admin') {
+        this.props.dispatch({
+          type: 'set_user',
+          username: username
+        })
         //跳转首页
         this.props.history.replace(path);
-      }else{
+      } else {
         alert('用户名或密码错误')
       }
     }
   }
-}
+})
 
-export default Login
+// export default Login

@@ -57,12 +57,12 @@ img {
 }
 .navbar .navbar-header {
   /* margin: 0!important; */
-  margin-top: -20px;
+  margin-top: 0px;
 }
 .right-box{
   float: right;
   position: relative;
-  margin-top: -20px;
+  margin-top: 0px;
 }
 .user{
   min-width: 100px;
