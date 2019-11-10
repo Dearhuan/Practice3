@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { connect } from 'react-redux';
 import Aheader from '../../components/Aheader/Aheader.jsx';
 import Aupload from '../../components/Aupload/Aupload';
 import Complaint from '../../components/Complaint/Complaint';
@@ -17,12 +18,14 @@ const { SubMenu } = Menu;
 // const { Content, Sider } = Layout;
 const { Header, Content, Footer, Sider } = Layout;
 
-export default class Alayout extends React.Component {
+export default connect(state => {
+  return state;
+})(class Alayout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       collapsed: false,
-      routes: [{
+      stuAdmin: [{
         url: '/index/complaint',
         title: '匿名投诉'
       }, {
@@ -46,6 +49,13 @@ export default class Alayout extends React.Component {
       }, {
         url: '/index/inquiry',
         title: '教学测评'
+      }],
+      stuCheck: [{
+        url: '/index/leave',
+        title: '学员请假'
+      }, {
+        url: '/index/discipline',
+        title: '学员违纪'
       }]
     }
   }
@@ -62,7 +72,7 @@ export default class Alayout extends React.Component {
             <Router>
               <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                 {/* <div className="logo" /> */}
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                <Menu theme="dark" defaultSelectedKeys={['0']} mode="inline">
                   <SubMenu
                     key="sub1"
                     title={
@@ -73,9 +83,9 @@ export default class Alayout extends React.Component {
                     }
                   >
                     {
-                      this.state.routes.map((item, index) => {
+                      this.state.stuAdmin.map((item, index) => {
                         return (
-                          <Menu.Item key={index + 1}>
+                          <Menu.Item key={index}>
                             <Link to={item.url}>{item.title}</Link>
                           </Menu.Item>
                         )
@@ -91,12 +101,15 @@ export default class Alayout extends React.Component {
                       </span>
                     }
                   >
-                    <Menu.Item key="6">
-                      <Link to="/index/leave">学员请假</Link>
-                    </Menu.Item>
-                    <Menu.Item key="8">
-                      <Link to="/index/discipline">学员违纪</Link>
-                    </Menu.Item>
+                    {
+                      this.state.stuCheck.map((item, index) => {
+                        return (
+                          <Menu.Item key={item.title}>
+                            <Link to={item.url}>{item.title}</Link>
+                          </Menu.Item>
+                        )
+                      })
+                    }
                   </SubMenu>
                 </Menu>
               </Sider>
@@ -135,5 +148,5 @@ export default class Alayout extends React.Component {
       </div>
     )
   }
-}
+})
 

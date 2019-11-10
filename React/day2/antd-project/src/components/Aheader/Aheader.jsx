@@ -1,13 +1,16 @@
 import React from 'react';
 import './Aheader.css';
 import { Icon } from 'antd';
+import { connect } from 'react-redux';
 import logo from '../../assets/logo.png';
 
-export default class Aheader extends React.Component {
+export default connect(state => {
+  return state;
+})(class Aheader extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: 'hello',
+      // username: 'hello',
       bool: false,
     }
   }
@@ -18,7 +21,7 @@ export default class Aheader extends React.Component {
     })
     console.log('click')
   }
-  logout = (path) =>{
+  logout = (path) => {
     console.log(path);
     console.log(this.props);
     window.location.href = '/'
@@ -27,7 +30,7 @@ export default class Aheader extends React.Component {
   render() {
     return (
       <div className="navbar navbar-default" id="navbar">
-      	<div className="navbar-container" id="navbar-container">
+        <div className="navbar-container" id="navbar-container">
           <div className="navbar-header pull-left">
             <a href="/#index" className="navbar-brand">
               <small>
@@ -38,11 +41,11 @@ export default class Aheader extends React.Component {
 
           <div className="right-box">
             <div onClick={this.toggle.bind(this)} className="user">
-              <span>{this.state.username}</span>
+              <span>{this.props.username}</span>
               <Icon type={this.state.bool ? 'caret-up' : 'caret-down'} />
             </div>
             <div style={{ display: this.state.bool ? 'block' : 'none' }} onClick={this.logout.bind(this, '/')} id="logout">
-              <div  className="logout">
+              <div className="logout">
                 <Icon type="poweroff" />
                 <span>退出</span>
               </div>
@@ -52,4 +55,4 @@ export default class Aheader extends React.Component {
       </div>
     );
   }
-}
+})
