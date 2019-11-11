@@ -1,7 +1,7 @@
-import { Input, Button, Table } from 'antd';
-
+import { Input, Button, Table, message } from 'antd';
 import React from 'react';
 import { connect } from 'react-redux';
+import getNowFormatDate from '../../utils/utils';
 
 const { TextArea } = Input;
 
@@ -32,7 +32,12 @@ export default connect(state => { return state })(class Demo extends React.Compo
         {
           title: '是否删除',
           key: 'cancel',
-          dataIndex: 'cancel',
+          // dataIndex: 'cancel',
+          render: (text) =>
+            <span>
+              <a onClick={this.removeitem.bind(this)}>删除</a>
+            </span>
+          
         }
       ],
       data: [
@@ -41,59 +46,83 @@ export default connect(state => { return state })(class Demo extends React.Compo
         //   name: 'hello',
         //   reason: 'xxxxxxxxxxxx',
         //   ctime: '2019-11-10',
-        //   cancel: '删除',
         // }
       ]
     }
   }
+  // -------------------设置输入框-------------------
   handleInput(value) {
     this.setState({
       value
     })
     console.log(value)
   }
-  submit(){
+  // ---------------------提交-------------------------
+  submit() {
     let obj = {
       key: Date.now().toString(),
       name: this.props.username,
       reason: this.state.value,
-      ctime: this.getNowFormatDate(Date.now()),
-      cancel: '删除'
+      ctime: getNowFormatDate(Date.now())
     };
-    console.log(JSON.parse(JSON.stringify(obj)));
+    // console.log(JSON.parse(JSON.stringify(obj)));
+    // console.log(this.state.value);
+    // this.state.value = '';
+    if (this.state.value) {
+      this.setState({
+        data: [...this.state.data, obj]
+      });
+      this.state.value = '';
+    }else{
+      message.error('投诉内容不能为空！');
+    }
+
+  }
+  // ----------------------返回----------------------
+  back() {
     this.state.value = '';
+  }
+  // 格式化日期：xxxx-xx-xx xx:xx:xx
+  // getNowFormatDate(microtime) {
+  //   var date = new Date(microtime)
+  //   var month = date.getMonth() + 1
+  //   var strDate = date.getDate()
+  //   var strHour = date.getHours()
+  //   var strMinute = date.getMinutes()
+  //   var strSeconds = date.getSeconds()
+  //   if (month >= 1 && month <= 9) {
+  //     month = `0${month}`
+  //   }
+  //   if (strDate >= 0 && strDate <= 9) {
+  //     strDate = `0${strDate}`
+  //   }
+  //   if (strHour >= 0 && strHour <= 9) {
+  //     strHour = `0${strHour}`
+  //   }
+  //   if (strMinute >= 0 && strMinute <= 9) {
+  //     strMinute = `0${strMinute}`
+  //   }
+  //   if (strSeconds >= 0 && strSeconds <= 9) {
+  //     strSeconds = `0${strSeconds}`
+  //   }
+  //   var currentdate = `${date.getFullYear()}-${month}-${strDate} ${strHour}:${strMinute}:${strSeconds}`
+  //   return currentdate
+  // }
+  // ---------------------删除该项---------------------
+  removeitem(record,rowKey){
+    // console.log(record);
+    console.log(rowKey);
+    // console.log(this.state.data.splice(rowKey,1));
+    let old = this.state.data;
+    old.splice(rowKey,1)
     this.setState({
-      data: [...this.state.data,obj]
-    });
+      data: old
+    })
   }
-  back(){
-    this.state.value = '';
+  // --------------------组件挂载后--------------------
+  componentDidMount(){
+    
   }
-  getNowFormatDate(microtime) {
-    var date = new Date(microtime)
-    var month = date.getMonth() + 1
-    var strDate = date.getDate()
-    var strHour = date.getHours()
-    var strMinute = date.getMinutes()
-    var strSeconds = date.getSeconds()
-    if (month >= 1 && month <= 9) {
-        month = `0${month}`
-    }
-    if (strDate >= 0 && strDate <= 9) {
-        strDate = `0${strDate}`
-    }
-    if (strHour >= 0 && strHour <= 9) {
-        strHour = `0${strHour}`
-    }
-    if (strMinute >= 0 && strMinute <= 9) {
-        strMinute = `0${strMinute}`
-    }
-    if (strSeconds >= 0 && strSeconds <= 9) {
-        strSeconds = `0${strSeconds}`
-    }
-    var currentdate = `${date.getFullYear()}-${month }-${strDate} ${strHour}:${strMinute}:${strSeconds}`
-    return currentdate
-}
 
   render() {
     return (
@@ -112,7 +141,13 @@ export default connect(state => { return state })(class Demo extends React.Compo
           <Button size={this.state.size} onClick={this.back.bind(this)}>返回</Button>
         </div>
 
-        <Table columns={this.state.columns} dataSource={this.state.data} />
+        <Table columns={this.state.columns} dataSource={this.state.data} 
+          onRow = {(record,rowKey)=>{
+            return{
+              onClick: this.removeitem.bind(this,record,rowKey)
+            }
+          }}
+          />
 
       </div>
     );
