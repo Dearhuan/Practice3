@@ -1,13 +1,18 @@
 import React from 'react';
-import { Input, Button, Table } from 'antd';
+import { connect } from 'react-redux';
+import getNowFormatDate from '../../utils/getFormatTime';
+import { Input, Button, Table, message } from 'antd';
 
 const { TextArea } = Input;
 //技术问题组件
-export default class Problem extends React.Component {
+export default connect(state=>{
+  return state;
+})(class Problem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       size: 'large',
+      value: '',
       columns: [
         {
           title: '姓名',
@@ -32,20 +37,20 @@ export default class Problem extends React.Component {
         }
       ],
       data: [
-        {
-          key: '1',
-          name: 'hello',
-          reason: 'xxxxxxxxxxxx',
-          ctime: '2019-11-10',
-          answer: 'ok',
-        }
+        // {
+        //   key: '1',
+        //   name: 'hello',
+        //   reason: 'xxxxxxxxxxxx',
+        //   ctime: '2019-11-10',
+        //   answer: 'ok',
+        // }
       ]
     }
   }
   render() {
     return (
       <div>
-        学生姓名：<Input placeholder="Basic usage" />
+        学生姓名：<Input placeholder={this.props.username} disabled />
         申请理由：<TextArea rows={4}
           placeholder="请输入申请理由"
         />
@@ -61,7 +66,7 @@ export default class Problem extends React.Component {
       </div>
     )
   }
-}
+})
 
 
 

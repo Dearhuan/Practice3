@@ -1,0 +1,96 @@
+.mindex{
+  minHeight: 360;
+  .avatar{
+    text-align: center;
+    padding: 50px 0;
+    line-height: 25px;
+    background: url("../../style/img/avatar_bg.jpg") no-repeat center center/cover;
+  }
+  .weather{
+    overflow: hidden;
+    padding: 10px 0;
+    width:120px;
+    margin:0 auto;
+    .weather-img{
+      float: left;
+      img{
+        width: 45px;
+        height: 35px;
+      }
+    }
+    .weather-info{
+      float: left;
+      line-height: 35px;
+      height: 35px;
+    }
+  }
+  .pro{
+    text-align: center;
+    margin-top:10px;
+    p{
+      height: 30px;
+      line-height: 30px;
+      font-size:14px;
+    }
+    #pro1{
+      .ant-progress-circle-path{
+        stroke:red;
+        opacity:.6;
+      }
+    }
+    #pro2{
+      .ant-progress-circle-path{
+        stroke:blue;
+        opacity:.6;
+      }
+    }
+    #pro3{
+      .ant-progress-circle-path{
+        stroke:purple;
+        opacity:.6;
+      }
+    }
+  }
+  .timeline{
+    margin-top:22px;
+    .timeItem{
+      line-height: 25px;
+    }
+  }
+  .collapse{
+    margin-top:22px;
+    .ant-collapse{
+      background: #fff;
+      border:0;
+      .ant-collapse-item{
+        margin-bottom:15px;
+        .ant-collapse-header{
+          color:#fff;
+          background:lightcoral;
+          letter-spacing: 5px;
+          .arrow{
+            letter-spacing: 0;
+            color:#fff;
+          }
+        }
+        .ant-collapse-content{
+          padding:10px 20px;
+          p{
+            line-height: 25px;
+          }
+          .author{
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+    text-align: center;
+  }
+  th.column-written,
+  td.column-written {
+    text-align: left !important;
+    padding-left:5%;
+  }
+}
