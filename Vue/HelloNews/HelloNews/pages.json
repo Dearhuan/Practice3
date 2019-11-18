@@ -1,0 +1,17 @@
+{
+	"pages": [{
+			"path": "pages/news/index",
+			"style": {}
+		},
+		{
+			"path": "pages/detail/detail",
+			"style": {}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "新闻资讯",
+		"navigationBarBackgroundColor": "#2F85FC",
+		"backgroundColor": "#FFFFFF"
+	}
+}
